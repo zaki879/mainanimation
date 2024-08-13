@@ -4,14 +4,14 @@
         "slug": "napa",
         "index": "001",
         "teaser": {
-            "url": "/_/static/media/napa/teaser.webp",
+            "url": "/animation/static/media/napa/teaser.webp",
             "width": 1920,
             "height": 1920
         },
         "meta": {
             "title": "Case Study | Discover NAPA's Transformation from Parts to Passion",
             "description": "Experience NAPA's evolution from a century-old parts store to a forward-thinking brand embracing the spirit of the drive. Join us on our journey as we discover difference at the crossroads of excellence and aspiration.",
-            "image": "/_/static/media/napa/Doer-Story-1.webp"
+            "image": "/animation/static/media/napa/Doer-Story-1.webp"
         },
         "intro": {
             "deliverables": [
@@ -29,14 +29,14 @@
             {
                 "size": "full",
                 "type": "video",
-                "poster": "/_/static/media/napa/NAPA_Video_1.webp",
-                "url": "/_/static/media/napa/NAPA_Brand_Anthem_60s_Agency.mp4"
+                "poster": "/animation/static/media/napa/NAPA_Video_1.webp",
+                "url": "/animation/static/media/napa/NAPA_Brand_Anthem_60s_Agency.mp4"
             },
             {
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/Largest-Network.webp",
+                    "url": "/animation/static/media/napa/Largest-Network.webp",
                     "width": 1920,
                     "height": 1080
                 }
@@ -45,7 +45,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/Doer-Story-1.webp",
+                    "url": "/animation/static/media/napa/Doer-Story-1.webp",
                     "width": 1920,
                     "height": 785
                 }
@@ -54,7 +54,7 @@
                 "size": "start",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/Truck.webp",
+                    "url": "/animation/static/media/napa/Truck.webp",
                     "width": 1920,
                     "height": 964
                 }
@@ -63,7 +63,7 @@
                 "size": "end",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/Girls.webp",
+                    "url": "/animation/static/media/napa/Girls.webp",
                     "width": 1920,
                     "height": 1080
                 }
@@ -72,7 +72,7 @@
                 "size": "mid",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/8.webp",
+                    "url": "/animation/static/media/napa/8.webp",
                     "width": 1929,
                     "height": 1080
                 }
@@ -80,21 +80,21 @@
             {
                 "size": "full",
                 "type": "video",
-                "poster": "/_/static/media/napa/NAPA_Video_2.webp",
-                "url": "/_/static/media/napa/NHVM1848000_Brand_Anthem1_30_Web.mp4"
+                "poster": "/animation/static/media/napa/NAPA_Video_2.webp",
+                "url": "/animation/static/media/napa/NHVM1848000_Brand_Anthem1_30_Web.mp4"
             },
             {
                 "size": "full",
                 "type": "image-ratio",
                 "media": [
                     {
-                        "url": "/_/static/media/napa/Graphics.webp",
+                        "url": "/animation/static/media/napa/Graphics.webp",
                         "width": 1920,
                         "height": 1749,
                         "proportion": "3/5"
                     },
                     {
-                        "url": "/_/static/media/napa/NAPAEndCard.webp",
+                        "url": "/animation/static/media/napa/NAPAEndCard.webp",
                         "width": 1585,
                         "height": 890,
                         "proportion": "2/5"
@@ -105,7 +105,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/LadyLowrider.webp",
+                    "url": "/animation/static/media/napa/LadyLowrider.webp",
                     "width": 1920,
                     "height": 794
                 }
@@ -114,7 +114,7 @@
                 "size": "start",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/Pinstripe.webp",
+                    "url": "/animation/static/media/napa/Pinstripe.webp",
                     "width": 1920,
                     "height": 796
                 }
@@ -123,7 +123,7 @@
                 "size": "end",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/napa/HunterGO.webp",
+                    "url": "/animation/static/media/napa/HunterGO.webp",
                     "width": 1082,
                     "height": 449
                 }
@@ -135,14 +135,14 @@
         "slug": "fck-cancer",
         "index": "003",
         "teaser": {
-            "url": "/_/static/media/fck-cancer/teaser.webp",
+            "url": "/animation/static/media/fck-cancer/teaser.webp",
             "width": 1920,
             "height": 1920
         },
         "meta": {
             "title": "Case Study | A New Position On Cancer Awareness",
             "description": "Experience the groundbreaking approach of F*ck Cancer's melanoma awareness campaign. Discover how Kamole Sutra cards, advertised on unconventional platforms, sparked attention and saved lives by reaching people in a bold, unexpected way",
-            "image": "/_/static/media/fck-cancer/SpreadAwarenessEagle.webp"
+            "image": "/animation/static/media/fck-cancer/SpreadAwarenessEagle.webp"
         },
         "intro": {
             "deliverables": [
@@ -161,14 +161,14 @@
             {
                 "size": "full",
                 "type": "video",
-                "poster": "/_/static/media/fck-cancer/FC_Video_1.webp",
-                "url": "/_/static/media/fck-cancer/FUCA3323004_Serious_Foreplay_Cowgirl.mp4"
+                "poster": "/animation/static/media/fck-cancer/FC_Video_1.webp",
+                "url": "/animation/static/media/fck-cancer/FUCA3323004_Serious_Foreplay_Cowgirl.mp4"
             },
             {
                 "size": "start",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/fck-cancer/SpreadAwarenessEagle.webp",
+                    "url": "/animation/static/media/fck-cancer/SpreadAwarenessEagle.webp",
                     "width": 1200,
                     "height": 600
                 }
@@ -176,14 +176,14 @@
             {
                 "size": "full",
                 "type": "video",
-                "poster": "/_/static/media/fck-cancer/FC_Video_2.webp",
-                "url": "/_/static/media/fck-cancer/FUCA3023002_Serious_Foreplay_The_Spot_30.mp4"
+                "poster": "/animation/static/media/fck-cancer/FC_Video_2.webp",
+                "url": "/animation/static/media/fck-cancer/FUCA3023002_Serious_Foreplay_The_Spot_30.mp4"
             },
             {
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/fck-cancer/Serious-Foreplay-Case-Study.webp",
+                    "url": "/animation/static/media/fck-cancer/Serious-Foreplay-Case-Study.webp",
                     "width": 1920,
                     "height": 992
                 }
@@ -191,21 +191,21 @@
             {
                 "size": "full",
                 "type": "video",
-                "poster": "/_/static/media/fck-cancer/FC_Video_3.webp",
-                "url": "/_/static/media/fck-cancer/FUCA4323001_Serious_Foreplay_Size_Matters.mp4"
+                "poster": "/animation/static/media/fck-cancer/FC_Video_3.webp",
+                "url": "/animation/static/media/fck-cancer/FUCA4323001_Serious_Foreplay_Size_Matters.mp4"
             },
             {
                 "size": "full",
                 "type": "image-ratio",
                 "media": [
                     {
-                        "url": "/_/static/media/fck-cancer/FUC-SF-Social-AdditionalPost-3.webp",
+                        "url": "/animation/static/media/fck-cancer/FUC-SF-Social-AdditionalPost-3.webp",
                         "width": 1920,
                         "height": 1920,
                         "proportion": "2/5"
                     },
                     {
-                        "url": "/_/static/media/fck-cancer/FUC-SeriousForeplay-WebPage1.webp",
+                        "url": "/animation/static/media/fck-cancer/FUC-SeriousForeplay-WebPage1.webp",
                         "width": 951,
                         "height": 1689,
                         "proportion": "3/5"
@@ -219,14 +219,14 @@
         "slug": "current",
         "index": "004",
         "teaser": {
-            "url": "/_/static/media/current/teaser.webp",
+            "url": "/animation/static/media/current/teaser.webp",
             "width": 1920,
             "height": 1920
         },
         "meta": {
             "title": "Case Study | An Electric Grilling Revolution",
             "description": "Experience the transformation of backyard grilling with Current, Char-Broil's groundbreaking electric grill. Discover how we helped Char-Broil break free from convention to create an electrifying new company that's redefining the grill industry and earning accolades at CES.",
-            "image": "/_/static/media/current/Web-Home.webp"
+            "image": "/animation/static/media/current/Web-Home.webp"
         },
         "intro": {
             "deliverables": [
@@ -246,14 +246,14 @@
             {
                 "size": "full",
                 "type": "video",
-                "poster": "/_/static/media/current/Current_Video.webp",
-                "url": "/_/static/media/current/Current-Sizzle.mp4"
+                "poster": "/animation/static/media/current/Current_Video.webp",
+                "url": "/animation/static/media/current/Current-Sizzle.mp4"
             },
             {
                 "size": "start",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/current/Phone.webp",
+                    "url": "/animation/static/media/current/Phone.webp",
                     "width": 1920,
                     "height": 1080
                 }
@@ -262,7 +262,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/current/Web-Home.webp",
+                    "url": "/animation/static/media/current/Web-Home.webp",
                     "width": 1862,
                     "height": 931
                 }
@@ -271,7 +271,7 @@
                 "size": "end",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/current/photosix_1706725326157-HR.webp",
+                    "url": "/animation/static/media/current/photosix_1706725326157-HR.webp",
                     "width": 1920,
                     "height": 1920
                 }
@@ -280,7 +280,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/current/Current-Concept-01-A.webp",
+                    "url": "/animation/static/media/current/Current-Concept-01-A.webp",
                     "width": 1920,
                     "height": 1207
                 }
@@ -290,13 +290,13 @@
                 "type": "image-ratio",
                 "media": [
                     {
-                        "url": "/_/static/media/current/Startup.webp",
+                        "url": "/animation/static/media/current/Startup.webp",
                         "width": 591,
                         "height": 492,
                         "proportion": "3/5"
                     },
                     {
-                        "url": "/_/static/media/current/-HR.webp",
+                        "url": "/animation/static/media/current/-HR.webp",
                         "width": 1920,
                         "height": 1280,
                         "proportion": "2/5"
@@ -307,7 +307,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/current/Current-2.webp",
+                    "url": "/animation/static/media/current/Current-2.webp",
                     "width": 1920,
                     "height": 1080
                 }
@@ -316,7 +316,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/current/Patio.webp",
+                    "url": "/animation/static/media/current/Patio.webp",
                     "width": 1862,
                     "height": 1047
                 }
@@ -325,7 +325,7 @@
                 "size": "end",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/current/Vector-Display.webp",
+                    "url": "/animation/static/media/current/Vector-Display.webp",
                     "width": 1232,
                     "height": 495
                 }
@@ -337,14 +337,14 @@
         "slug": "ninjamas",
         "index": "005",
         "teaser": {
-            "url": "/_/static/media/ninjamas/teaser.webp",
+            "url": "/animation/static/media/ninjamas/teaser.webp",
             "width": 1920,
             "height": 1920
         },
         "meta": {
             "title": "Case Study | Transform Bedtime with Ninjamas",
             "description": "Discover Ninjamas, the superhero-inspired bedtime protection that's revolutionizing the way kids approach nighttime accidents. Say goodbye to worries and hello to epic adventures with Procter and Gamble's innovative solution",
-            "image": "/_/static/media/ninjamas/Ninjas.webp"
+            "image": "/animation/static/media/ninjamas/Ninjas.webp"
         },
         "intro": {
             "deliverables": [
@@ -363,14 +363,14 @@
             {
                 "size": "full",
                 "type": "video",
-                "poster": "/_/static/media/ninjamas/Ninjamas_Video.web",
-                "url": "/_/static/media/ninjamas/hero.mp4"
+                "poster": "/animation/static/media/ninjamas/Ninjamas_Video.web",
+                "url": "/animation/static/media/ninjamas/hero.mp4"
             },
             {
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/ninjamas/Ninjas.webp",
+                    "url": "/animation/static/media/ninjamas/Ninjas.webp",
                     "width": 1920,
                     "height": 1079
                 }
@@ -380,17 +380,17 @@
                 "type": "image-array",
                 "media": [
                     {
-                        "url": "/_/static/media/ninjamas/Screenshot1.webp",
+                        "url": "/animation/static/media/ninjamas/Screenshot1.webp",
                         "width": 774,
                         "height": 1378
                     },
                     {
-                        "url": "/_/static/media/ninjamas/Screenshot2.webp",
+                        "url": "/animation/static/media/ninjamas/Screenshot2.webp",
                         "width": 776,
                         "height": 1378
                     },
                     {
-                        "url": "/_/static/media/ninjamas/Screenshot3.webp",
+                        "url": "/animation/static/media/ninjamas/Screenshot3.webp",
                         "width": 776,
                         "height": 1378
                     }
@@ -400,7 +400,7 @@
                 "size": "end",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/ninjamas/ComicKick.webp",
+                    "url": "/animation/static/media/ninjamas/ComicKick.webp",
                     "width": 1920,
                     "height": 1080
                 }
@@ -409,7 +409,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/ninjamas/Pack.webp",
+                    "url": "/animation/static/media/ninjamas/Pack.webp",
                     "width": 1920,
                     "height": 1080
                 }
@@ -418,7 +418,7 @@
                 "size": "start",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/ninjamas/ComicFrame.webp",
+                    "url": "/animation/static/media/ninjamas/ComicFrame.webp",
                     "width": 1920,
                     "height": 1080
                 }
@@ -427,7 +427,7 @@
                 "size": "full",
                 "type": "image-single",
                 "media": {
-                    "url": "/_/static/media/ninjamas/63d9bf2fb2ca2e72b6fb625f_comic.webp",
+                    "url": "/animation/static/media/ninjamas/63d9bf2fb2ca2e72b6fb625f_comic.webp",
                     "width": 1676,
                     "height": 942
                 }
