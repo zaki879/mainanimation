@@ -15,21 +15,9 @@
 }
 
 :host,
-html {
-    line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
-    font-family: 'Quicksand';
-    font-feature-settings: normal;
-    font-variation-settings: normal;
-    -moz-tab-size: 4;
-    tab-size: 4;
-    -webkit-tap-highlight-color: transparent
-}
 
-body {
-    line-height: inherit;
-    margin: 0
-}
+
+
 
 hr {
     border-top-width: 1px;
@@ -67,17 +55,17 @@ pre,
 samp {
     font-family: 'Quicksand';
     font-feature-settings: normal;
-    font-size: 1em;
+    font-size: inherit;
     font-variation-settings: normal
 }
 
 small {
-    font-size: 80%
+    font-size: inherit
 }
 
 sub,
 sup {
-    font-size: 75%;
+    font-size: inherit;
     line-height: 0;
     position: relative;
     vertical-align: baseline
@@ -105,7 +93,7 @@ textarea {
     color: inherit;
     font-family: 'Quicksand';
     font-feature-settings: inherit;
-    font-size: 100%;
+    font-size: inherit;
     font-variation-settings: inherit;
     font-weight: inherit;
     letter-spacing: inherit;
@@ -209,7 +197,7 @@ textarea::placeholder {
 
 [role=button],
 button {
-    cursor: pointer
+    cursor: default
 }
 
 :disabled {
@@ -248,7 +236,7 @@ html {
     background-color: var(--theme-primary);
     color: var(--theme-secondary);
     font-family: 'Quicksand';
-    font-size: 14px;
+    font-size: inherit;
     font-weight: 450;
     height: 100%;
     line-height: 1.27;
@@ -279,7 +267,7 @@ html.is-menu-active body {
 
     body *,
     html {
-        cursor: none !important
+        cursor: default !important
     }
 }
 
@@ -964,7 +952,7 @@ html.is-menu-active [data-menu] svg path {
 }
 
 .cursor-pointer {
-    cursor: pointer
+    cursor: default
 }
 
 .auto-rows-min {
@@ -1089,56 +1077,56 @@ html.is-menu-active [data-menu] svg path {
 
 .font-secondary {
     font-family: 'Quicksand';
-    font-size: 80px;
+    font-size: inherit;
 }
 
 .text-\[11px\] {
-    font-size: 11px
+    font-size: inherit
 }
 
 .text-\[20px\] {
-    font-size: 20px
+    font-size: inherit
 }
 
 .text-\[95vh\] {
-    font-size: 95vh
+    font-size: inherit
 }
 
 .text-bs1 {
-    font-size: 14px;
+    font-size: inherit;
     line-height: 1.27
 }
 
 .text-bs2 {
-    font-size: 16px
+    font-size: inherit
 }
 
 .text-lg1 {
-    font-size: 40px
+    font-size: inherit
 }
 
 .text-lg2 {
-    font-size: 50px
+    font-size: inherit
 }
 
 .text-md1 {
-    font-size: 20px
+    font-size: inherit
 }
 
 .text-md2 {
-    font-size: 24px
+    font-size: inherit
 }
 
 .text-md3 {
-    font-size: 28px
+    font-size: inherit
 }
 
 .text-md4 {
-    font-size: 34px
+    font-size: inherit
 }
 
 .text-xl1 {
-    font-size: 90px
+    font-size: inherit
 }
 
 .font-extralight {
@@ -2211,7 +2199,7 @@ html.is-loaded:not(.is-logo-hidden) .logo-visible\:\!opacity-100 {
     }
 
     .sm1\:text-lg1 {
-        font-size: 40px
+        font-size: inherit
     }
 }
 
@@ -2275,19 +2263,19 @@ html.is-loaded:not(.is-logo-hidden) .logo-visible\:\!opacity-100 {
     }
 
     .md1\:text-lg3 {
-        font-size: 60px
+        font-size: inherit
     }
 
     .md1\:text-md2 {
-        font-size: 24px
+        font-size: inherit
     }
 
     .md1\:text-xl1 {
-        font-size: 90px
+        font-size: inherit
     }
 
     .md1\:text-xl2 {
-        font-size: 130px
+        font-size: inherit
     }
 }
 
@@ -2474,43 +2462,43 @@ html.is-loaded:not(.is-logo-hidden) .logo-visible\:\!opacity-100 {
     }
 
     .lg1\:text-\[11vw\] {
-        font-size: 11vw
+        font-size: inherit
     }
 
     .lg1\:text-\[250px\] {
-        font-size: 250px
+        font-size: inherit
     }
 
     .lg1\:text-\[28px\] {
-        font-size: 28px
+        font-size: inherit
     }
 
     .lg1\:text-bs2 {
-        font-size: 16px
+        font-size: inherit
     }
 
     .lg1\:text-lg1 {
-        font-size: 40px
+        font-size: inherit
     }
 
     .lg1\:text-lg2 {
-        font-size: 50px
+        font-size: inherit
     }
 
     .lg1\:text-lg3 {
-        font-size: 60px
+        font-size: inherit
     }
 
     .lg1\:text-xl1 {
-        font-size: 90px
+        font-size: inherit
     }
 
     .lg1\:text-xl2 {
-        font-size: 130px
+        font-size: inherit
     }
 
     .lg1\:text-xl3 {
-        font-size: 150px
+        font-size: inherit
     }
 
     .lg1\:text-accent {
@@ -2603,17 +2591,17 @@ html.is-loaded:not(.is-logo-hidden) .logo-visible\:\!opacity-100 {
 
 @media (min-width:1440px) {
     .xl2\:text-xl4 {
-        font-size: 250px;
+        font-size: inherit;
         line-height: .8
     }
 }
 .txt-header{
-    font-size: 56px;
+    font-size: inherit;
     font-weight: 900;
     line-height: 120%;
 }
 .sub-txt-header{
-    font-size: 18px;
+    font-size: inherit;
     font-weight: normal;
     line-height: 120%;
     margin-bottom: 10vh;
