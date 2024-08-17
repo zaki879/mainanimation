@@ -5176,7 +5176,7 @@ var Tt,
     ts();
     is();
     Tt = class extends A {
-      color = [0, 0, 0];
+      color = [255, 0, 0];
       bg = 1;
       mouse;
       constructor(t) {
@@ -5894,7 +5894,8 @@ var zt,
               new Dt(),
               new N({
                 uniforms: {
-                  u_accentColor: [19 / 255, 7 / 255, 159 / 255]  // #13079F
+                 u_accentColor: [0.51, 0.19, 0.75]  // #8131BF
+
                 }
               }),
               
