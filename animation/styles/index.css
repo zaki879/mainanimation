@@ -279,11 +279,6 @@ video {
     color: color-mix(in srgb, var(--theme-accent) calc(var(--fade-progress)*100%), var(--theme-secondary))
 }
 
-[data-smooth-scroll],
-[data-trigger-opacity] {
-    will-change: transform
-}
-
 .above-the-fold[data-trigger-opacity],
 [data-trigger-opacity]:not(.is-active) {
     opacity: 0
@@ -2357,7 +2352,8 @@ html.is-loaded:not(.is-logo-hidden) .logo-visible\:\!opacity-100 {
 }
 .w-embed {
   width: 100%;
-  height: auto;
-  overflow: visible;
+  height: 100%; /* Ensure it takes the full height of its container */
+  overflow: auto; /* Allow scrolling if content exceeds height */
   display: block;
+  position: relative; /* Ensure that the content is positioned relative to the container */
 }
