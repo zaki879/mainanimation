@@ -2597,3 +2597,9 @@ html.is-loaded:not(.is-logo-hidden) .logo-visible\:\!opacity-100 {
     line-height: 120%;
     margin-bottom: 10vh;
 }
+.w-embed {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
