@@ -897,7 +897,7 @@ var K,
           (this._started = !1),
           (this.lastProgress = 0),
           (this.lastDelay = 0),
-          (this._duration = typeof t.duration < "u" ? t.duration : 200);
+          (this._duration = typeof t.duration < "u" ? t.duration : 500);
       }
       callback(t, e = []) {
         typeof t == "function" && t(...e);
@@ -3525,6 +3525,7 @@ var ki,
 
     in vec3 v_normal;
     out vec4 fragColor;
+    uniform vec4 u_color;
     uniform vec3 u_light;
 
     void main() {
@@ -3533,7 +3534,7 @@ var ki,
 
       float intensity = dot(normal, light);
 
-     
+      fragColor = u_color;
       fragColor.rgb *= intensity;
     }
   `,
@@ -3569,7 +3570,7 @@ var Ai,
     void main() {
       vec4 color = texture(u_texture, v_texcoord);
 
-  
+      color.a *= u_alpha;
 
       fragColor = color;
     }
@@ -3587,6 +3588,7 @@ var ke,
     ke = class extends Ci {
       constructor(t, e) {
         let r = e.uniforms || {};
+        typeof r.u_color > "u" && (r.u_color = [1, 0, 0, 1]),
           typeof r.u_alpha > "u" && (r.u_alpha = 1),
           super(t, {
             vertex: e.texture ? Ai.vertex : ki.vertex,
@@ -3594,6 +3596,7 @@ var ke,
             ...e,
             uniforms: r,
             uniformOptionals: {
+              u_color: !0,
               u_alpha: !0,
               ...(e.uniformOptionals || {}),
             },
@@ -3917,7 +3920,7 @@ var Re,
         if (this.resolver.completed || this.loading) return;
         this.loading = !0;
         let e = [],
-          r = await fetch("https://zaki879.github.io/mainanimation/animation/static/projects.json"),
+          r = await fetch("/animation/static/projects.json"),
           s = Object.values(await r.json()),
           o =
             location.protocol +
@@ -4150,7 +4153,7 @@ var ji,
             this.markerState,
             { offset: r[0], size: r[1] },
             {
-              duration: 200,
+              duration: 1500,
               easing: E.easeOutExpo,
               onUpdate: ({ offset: s, size: o }) => {
                 (e.strokeDashoffset = `${s}`),
@@ -4204,7 +4207,7 @@ var ji,
               this.fadeState,
               { progress: n ? 1 : 0 },
               {
-                duration: 200,
+                duration: 400,
                 easing: E.easeOutSine,
                 onUpdate: ({ progress: a }) => {
                   this.observable.ref.style.setProperty(
@@ -4433,7 +4436,7 @@ var ut,
         this.element,
         { opacity: 1 },
         {
-          duration: 200,
+          duration: 1e3,
           delay:
             this.element.classList.contains("above-the-fold") && F()
               ? 0
@@ -4452,7 +4455,7 @@ var ut,
         { opacity: 0 },
         {
           autoStart: !1,
-          duration: 200,
+          duration: 1e3,
           onStart: () => this.onEnter.stop(),
           easing: E.easeOutExpo,
           onComplete: () => {
@@ -4558,7 +4561,7 @@ var Z,
               { y: e.component.scrollY },
               { y: t },
               {
-                duration: 200,
+                duration: 800,
                 easing: E.easeOutSine,
                 onUpdate: (r) => e.component.scrollToY(r.y),
               }
@@ -4596,7 +4599,7 @@ var Ot,
               easing: E.easeOutExpo,
               initSeek: !0,
               autoStart: !1,
-              duration: 200,
+              duration: 1500,
               onStart: () => {
                 this.lines.forEach((r) => r.classList.add("tsa")),
                   this.onLeave.stop();
@@ -4621,7 +4624,7 @@ var Ot,
               easing: E.easeOutExpo,
               onStart: () => this.onEnter.stop(),
               autoStart: !1,
-              duration: 200,
+              duration: 1e3,
               timeline: { autoStart: !1 },
             }
           ));
@@ -4641,7 +4644,7 @@ var kt,
         { scaleX: 0 },
         { scaleX: 1 },
         {
-          duration: 200,
+          duration: 1e3,
           autoStart: !1,
           initSeek: !0,
           delay: parseFloat(this.element.dataset.triggerScaleDelay || "0") || 0,
@@ -4655,7 +4658,7 @@ var kt,
         {
           autoStart: !1,
           onStart: () => this.onEnter.stop(),
-          duration: 200,
+          duration: 1e3,
           easing: E.easeOutExpo,
         }
       );
@@ -4962,28 +4965,15 @@ var Ye,
   $i = l(() => {
     Ye = `#version 300 es
 precision mediump float;
-in vec2 v_texcoord;
-out vec4 fragColor;
-uniform sampler2D u_texture;
-void main() {
-    fragColor = texture(u_texture, v_texcoord);
-}
-`;
+#define GLSLIFY 1
+uniform sampler2D u_texture;uniform float u_alpha;uniform vec2 u_plane;uniform float u_time;uniform vec2 u_mouse;uniform vec2 u_velocity;uniform vec2 u_res;uniform vec2 u_mediaSize;uniform vec2 u_planeScale;uniform vec3 u_accentColor;uniform float u_fadeOut;out vec4 fragColor;in vec2 v_texcoord;vec2 cover(vec2 uv,vec2 size,vec2 area,bool fitHeight){float aspectSize=size.x/size.y;float aspectArea=area.x/area.y;bool match=aspectSize>aspectArea;if(fitHeight){match=aspectSize<aspectArea;}if(match){uv.x=uv.x*aspectArea/aspectSize+(1.-aspectArea/aspectSize)*0.5;}else{uv.y=uv.y*aspectSize/aspectArea+(1.-aspectSize/aspectArea)*0.5;}return uv;}vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x,289.0);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+1.0*C.xxx;vec3 x2=x0-i2+2.0*C.xxx;vec3 x3=x0-1.+3.0*C.xxx;i=mod(i,289.0);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=1.0/7.0;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}float map(float value,vec2 from,vec2 to){return to.x+(to.y-to.x)/(from.y-from.x)*(value-from.x);}float circle(vec2 uv,vec2 center,float radius,float border){return smoothstep(radius+border,radius-border,distance(uv,center));}void main(){vec2 coords=cover(v_texcoord,u_mediaSize,u_plane*u_planeScale,false);float rs=u_res.x/u_res.y;vec2 pointer=vec2(u_mouse.x,(u_res.y-u_mouse.y)/rs)/u_res;vec2 center=vec2(gl_FragCoord.x/u_res.x,gl_FragCoord.y/u_res.y/rs);float mouse=circle(pointer,center,0.04,0.042);float n2=snoise(vec3(coords.x*3.,coords.y*3.,u_time*.2));float n2n=map(n2,vec2(-1.,1.),vec2(0.0,1.0));vec4 color=texture(u_texture,coords);float circ=mouse*2.*n2n*1.5*(abs(u_velocity.x)+abs(u_velocity.y))*10.;float rim=smoothstep(0.42,0.95,circ)-smoothstep(1.0,1.0,circ);color.rgb=mix(color.rgb,u_accentColor,clamp(rim,0.0,1.0));color.a=(1.0-circ+rim)*u_alpha;float circ2=n2n*map(u_fadeOut,vec2(1.0,0.),vec2(0.0,3.0));float rim2=smoothstep(0.42,0.95,circ2)-smoothstep(1.0,1.0,circ2);color.rgb=mix(color.rgb,u_accentColor,clamp(rim2,0.0,1.0));color.a*=1.0-circ2+rim2;fragColor=color;}`;
   });
 var Jr,
   Qr = l(() => {
     Jr = `#version 300 es
-    precision mediump float;
-    in vec4 a_position;
-    in vec2 a_texcoord;
-    out vec2 v_texcoord;
-    uniform mat4 u_model;
-    uniform mat4 u_proj;
-    void main() {
-        gl_Position = u_proj * u_model * a_position;
-        v_texcoord = a_texcoord;
-    }
-    `;
+precision mediump float;
+#define GLSLIFY 1
+in vec4 a_position;in vec2 a_texcoord;uniform float u_time;uniform mat4 u_proj;uniform vec2 u_mouseGl;uniform mat4 u_view;uniform float u_distort;uniform mat4 u_model;uniform float u_buldge;uniform vec2 u_plane;out vec2 v_texcoord;out float v_accent;vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x,289.0);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+1.0*C.xxx;vec3 x2=x0-i2+2.0*C.xxx;vec3 x3=x0-1.+3.0*C.xxx;i=mod(i,289.0);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=1.0/7.0;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}void main(){vec4 model=u_model*a_position;float dist=length(u_mouseGl.xy-model.xy);model.z+=(1.0-smoothstep(0.0,u_plane.x,dist))*u_buldge;gl_Position=u_proj*u_view*model;v_texcoord=a_texcoord;}`;
   });
 var A,
   He = l(() => {
@@ -5039,12 +5029,12 @@ var A,
           (this.onEnter = y.to(
             this.uniforms,
             { u_alpha: 1 },
-            { duration: 200 }
+            { duration: 500 }
           )),
           (this.onLeave = y.to(
             this.uniforms,
             { u_alpha: 0 },
-            { duration: 200 }
+            { duration: 500 }
           ));
       }
       onListen() {
@@ -5157,7 +5147,7 @@ var es,
     es = `#version 300 es
 precision mediump float;
 #define GLSLIFY 1
-uniform sampler2D u_texture;uniform float u_alpha;uniform float u_texScale;uniform float u_time;uniform vec3 u_color;uniform vec2 u_mouse;uniform vec2 u_res;uniform float u_scale;uniform float u_bg;uniform vec3 u_accentColor;out vec4 fragColor;in vec2 v_texcoord;vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x,289.0);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+1.0*C.xxx;vec3 x2=x0-i2+2.0*C.xxx;vec3 x3=x0-1.+3.0*C.xxx;i=mod(i,289.0);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=1.0/7.0;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}void main(){vec2 coord=v_texcoord;vec2 center=vec2(0.5);float scale=u_scale;if(u_bg==1.){scale*=.99;}coord=center+(coord-center)/u_texScale/scale;coord+=snoise(vec3(v_texcoord*1.2,scale*-.3))*(1.0-scale);float rs=u_res.x/u_res.y;vec2 mp=vec2(u_mouse.x,(u_res.y-u_mouse.y)/rs);vec2 st=vec2(gl_FragCoord.x/u_res.x,gl_FragCoord.y/u_res.y/rs);float md=distance(st,mp/u_res);float sm=smoothstep(0.05,0.0,md);float n2=snoise(vec3(v_texcoord,md+cos(u_time)*0.1))*sm*.5;if(u_bg==1.){n2=snoise(vec3(v_texcoord,md+cos(u_time)*0.15))*sm*.3;}coord.xy+=n2;if(coord.x<0.||coord.x>1.||coord.y<0.||coord.y>1.){discard;}vec4 color=texture(u_texture,coord);color.rgb=u_color/255.;color.rgb=mix(color.rgb,u_accentColor,min(1.0,smoothstep(0.1,0.0,md)));color.a*=pow(scale,u_bg==1.0 ? 4.0 : 2.0);fragColor=color;}`;
+uniform sampler2D u_texture;uniform float u_alpha;uniform float u_texScale;uniform float u_time;uniform vec3 u_color;uniform vec2 u_mouse;uniform vec2 u_res;uniform float u_scale;uniform float u_bg;uniform vec3 u_accentColor;out vec4 fragColor;in vec2 v_texcoord;vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x,289.0);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159-0.85373472095314*r;}float snoise(vec3 v){const vec2 C=vec2(1.0/6.0,1.0/3.0);const vec4 D=vec4(0.0,0.5,1.0,2.0);vec3 i=floor(v+dot(v,C.yyy));vec3 x0=v-i+dot(i,C.xxx);vec3 g=step(x0.yzx,x0.xyz);vec3 l=1.0-g;vec3 i1=min(g.xyz,l.zxy);vec3 i2=max(g.xyz,l.zxy);vec3 x1=x0-i1+1.0*C.xxx;vec3 x2=x0-i2+2.0*C.xxx;vec3 x3=x0-1.+3.0*C.xxx;i=mod(i,289.0);vec4 p=permute(permute(permute(i.z+vec4(0.0,i1.z,i2.z,1.0))+i.y+vec4(0.0,i1.y,i2.y,1.0))+i.x+vec4(0.0,i1.x,i2.x,1.0));float n_=1.0/7.0;vec3 ns=n_*D.wyz-D.xzx;vec4 j=p-49.0*floor(p*ns.z*ns.z);vec4 x_=floor(j*ns.z);vec4 y_=floor(j-7.0*x_);vec4 x=x_*ns.x+ns.yyyy;vec4 y=y_*ns.x+ns.yyyy;vec4 h=1.0-abs(x)-abs(y);vec4 b0=vec4(x.xy,y.xy);vec4 b1=vec4(x.zw,y.zw);vec4 s0=floor(b0)*2.0+1.0;vec4 s1=floor(b1)*2.0+1.0;vec4 sh=-step(h,vec4(0.0));vec4 a0=b0.xzyw+s0.xzyw*sh.xxyy;vec4 a1=b1.xzyw+s1.xzyw*sh.zzww;vec3 p0=vec3(a0.xy,h.x);vec3 p1=vec3(a0.zw,h.y);vec3 p2=vec3(a1.xy,h.z);vec3 p3=vec3(a1.zw,h.w);vec4 norm=taylorInvSqrt(vec4(dot(p0,p0),dot(p1,p1),dot(p2,p2),dot(p3,p3)));p0*=norm.x;p1*=norm.y;p2*=norm.z;p3*=norm.w;vec4 m=max(0.6-vec4(dot(x0,x0),dot(x1,x1),dot(x2,x2),dot(x3,x3)),0.0);m=m*m;return 42.0*dot(m*m,vec4(dot(p0,x0),dot(p1,x1),dot(p2,x2),dot(p3,x3)));}void main(){vec2 coord=v_texcoord;vec2 center=vec2(0.5);float scale=u_scale;if(u_bg==1.){scale*=.99;}coord=center+(coord-center)/u_texScale/scale;coord+=snoise(vec3(v_texcoord*1.2,scale*-.3))*(1.0-scale);float rs=u_res.x/u_res.y;vec2 mp=vec2(u_mouse.x,(u_res.y-u_mouse.y)/rs);vec2 st=vec2(gl_FragCoord.x/u_res.x,gl_FragCoord.y/u_res.y/rs);float md=distance(st,mp/u_res);float sm=smoothstep(0.05,0.0,md);float n2=snoise(vec3(v_texcoord,md+cos(u_time)*0.1))*sm*.5;if(u_bg==1.){n2=snoise(vec3(v_texcoord,md+cos(u_time)*0.15))*sm*.3;}coord.xy+=n2;if(coord.x<0.||coord.x>1.||coord.y<0.||coord.y>1.){discard;}vec4 color=texture(u_texture,coord);color.rgb=u_color/255.;color.rgb=mix(color.rgb,u_accentColor,min(1.0,smoothstep(0.1,0.0,md)));color.a*=pow(scale,u_bg==1.0 ? 4.0 : 2.0);fragColor=color;}`;
   });
 var rs,
   is = l(() => {
@@ -5177,7 +5167,7 @@ var Tt,
     is();
     Tt = class extends A {
       color = [255, 0, 0];
-      bg = 1;
+      bg = !1;
       mouse;
       constructor(t) {
         super(t, {
@@ -5189,17 +5179,18 @@ var Tt,
           (this.onEnter = y.to(
             this.uniforms,
             { u_scale: 1 },
-            { duration: 1400, easing: E.easeOutExpo }
+            { duration: 1800, easing: E.easeOutExpo }
           )),
           (this.onLeave = y.to(
             this.uniforms,
             { u_scale: 0 },
-            { duration: 1100, easing: E.easeOutExpo }
+            { duration: 1200, easing: E.easeOutExpo }
           ));
       }
       onCreate() {
         super.onCreate(),
           (this.uniforms.u_mouse = this.mouse.position),
+          (this.uniforms.u_color = this.color),
           (this.uniforms.u_bg = this.bg ? 1 : 0);
       }
       get vertex() {
@@ -5259,7 +5250,7 @@ var go,
                   this.element.classList.add("is-done"),
                   document.documentElement.classList.add("is-loaded"),
                   this.scroller.lock(!1, !0),
-                  (this.element.style.display = "inline");
+                  (this.element.style.display = "none");
               else {
                 let e = !1;
                 await Promise.all([
@@ -5270,7 +5261,7 @@ var go,
                     this.progressEl,
                     { x: 80 },
                     {
-                      duration: 200,
+                      duration: 1200,
                       units: { x: "%" },
                       easing: E.easeOutExpo,
                       onUpdate: (r, { linear: s }) => {
@@ -5317,10 +5308,10 @@ var go,
               this.progressEl,
               { x: -20, scale: 2 },
               {
-                duration: 100,
+                duration: 1200,
                 units: { x: "%" },
                 easing: E.easeInOutExpo,
-                delay: 100,
+                delay: 200,
               }
             )
             .to(this.element, { opacity: 0 }, { duration: 1e3, offset: -1 });
@@ -5365,7 +5356,7 @@ var rt,
             { progress: 1 },
             {
               autoStart: !1,
-              duration: 200,
+              duration: 800,
               easing: E.easeOutSine,
               onStart: () => (this.fading = !1),
               onUpdate: ({ progress: r }) => {
@@ -5382,7 +5373,7 @@ var rt,
             { progress: 0 },
             {
               autoStart: !1,
-              duration: 200,
+              duration: 800,
               easing: E.easeOutSine,
               onStart: () => (this.fading = !0),
               onUpdate: ({ progress: r }) => {
@@ -5725,7 +5716,7 @@ var J,
               this.buldge,
               { progress: t },
               {
-                duration: 200,
+                duration: 1e3,
                 easing: E.easeOutSine,
                 onUpdate: ({ progress: a }) => {
                   if (s) {
@@ -5739,7 +5730,7 @@ var J,
               this.scale,
               { progress: t },
               {
-                duration: 200,
+                duration: 1e3,
                 offset: -1,
                 easing: E.easeInOutExpo,
                 onUpdate: ({ progress: a }) => {
@@ -5894,8 +5885,7 @@ var zt,
               new Dt(),
               new N({
                 uniforms: {
-                 u_accentColor: [0.51, 0.19, 0.75]  // #8131BF
-
+                  u_accentColor: [0.51, 0.19, 0.75]  // #8131BF  
                 }
               }),
               
