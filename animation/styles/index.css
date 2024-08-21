@@ -251,7 +251,7 @@ body {
     height: 100%
 }
 
-html.is-menu-active body {
+html body {
     overflow: hidden
 }
 
