@@ -3920,7 +3920,7 @@ var Re,
         if (this.resolver.completed || this.loading) return;
         this.loading = !0;
         let e = [],
-          r = await fetch("/animation/static/projects.json"),
+          r = await fetch("https://zaki879.github.io/mainanimation/animation/static/projects.json"),
           s = Object.values(await r.json()),
           o =
             location.protocol +
@@ -5919,7 +5919,4 @@ window.addEventListener("resize", () => {
   let i = F();
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
-console.log(
-  "%cCoded by Davide Perozzi @ https://perozzi.studio/",
-  "color: #535353; font-weight: bold; background: #e0e0e0; padding: 10px;"
-);
+
