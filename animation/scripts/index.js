@@ -557,7 +557,13 @@ var de,
                 let a = o.component.onCreate();
                 a instanceof Promise && (n = a);
               }
-               
+              typeof o.component.onListen == "function" &&
+                n.then(async () => {
+                  let a = o.component.onListen();
+                  a instanceof Promise
+                    ? (o.unlisten = await a)
+                    : (o.unlisten = a);
+                });
             }),
               s.push(o),
               this.components.push(o);
@@ -2048,8 +2054,7 @@ var T,
       }
       init() {
         return lt(this, void 0, void 0, function* () {
-          window.history.scrollRestoration =
-            this.config.scrollRestoration || "manual";
+        
           let t = new we(this.config.routerConfig);
           t.animate(...(this.config.animations || [])),
             t.on(O.AFTER_ENTER, ({ toElement: e }) => {
@@ -2083,8 +2088,7 @@ var q,
           (this._top = 0),
           (this._width = 0),
           (this._height = 0),
-          (this._scrollWidth = 0),
-          (this._scrollHeight = 0),
+       
           (this._visible = !1),
           (this._interecKey = "{}"),
           i.autoAttach !== !1 && this.attach();
@@ -2148,12 +2152,7 @@ var q,
       get height() {
         return this._height;
       }
-      get scrollWidth() {
-        return this._scrollWidth;
-      }
-      get scrollHeight() {
-        return this._scrollHeight;
-      }
+    
       get scrollSize() {
         return { width: this.scrollWidth, height: this.scrollHeight };
       }
@@ -4114,7 +4113,21 @@ var ji,
             (this.onEnter = y.to(this.element, { opacity: 1 })),
             (this.onLeave = y.to(this.element, { opacity: 0 }));
         }
-    
+        onListen() {
+          return this.useMobile
+            ? w(
+                g(this.nextBtn, "click", () =>
+                  this.enableStage(We(this.activeStage + 1, ji.length))
+                ),
+                g(this.prevBtn, "click", () =>
+                  this.enableStage(We(this.activeStage - 1, ji.length))
+                )
+              )
+            : w(
+                this.scrollEmitter.on(B.VIRTUAL, (t) => this.handleScroll(t)),
+                g(window, "mousemove", (t) => this.handleMouseMove(t))
+              );
+        }
         onCreate() {
           super.onCreate(),
             this.useMobile
@@ -4374,7 +4387,12 @@ var V,
         (this.camera = this.webgl.camera(this.name, {})),
           this.scroller.reflectEvents(this, this.emitter);
       }
-   
+      onListen() {
+        return w(
+          this.scroller.onScroll(() => this.updateCamera()),
+          this.scroller.on("resize", () => this.updateCamera())
+        );
+      }
       get scrollY() {
         return this.scroller.output.y;
       }
@@ -4478,7 +4496,26 @@ var Z,
             this.handleScroll(0);
           });
       }
-    
+      onListen() {
+        return w(
+          this.scrollEmitter.on(B.OUTPUT, ({ y: t }) => this.handleScroll(t)),
+          this.router.on(O.NAV_START, () => {
+            setTimeout(() => this.handleScroll(0));
+          }),
+          this.router.on(O.AFTER_LEAVE, () => this.updateLinks()),
+          this.router.on(O.AFTER_ENTER, ({ toElement: t }) =>
+            this.updateLinks(t)
+          ),
+          this.router.on(O.BEFORE_ENTER, ({ toElement: t }) =>
+            this.updateLinks(t)
+          ),
+          g(this.menuLogoLink, "click", (t) => {
+            t.stopPropagation(),
+              t.preventDefault(),
+              this.router.route.url === "/" && this.scrollTo(0);
+          })
+        );
+      }
       get isHome() {
         return this.router.route.url === "/";
       }
@@ -4739,7 +4776,19 @@ var b,
       onCreate() {
         this.updateLinkListeners();
       }
- 
+      onListen() {
+        return w(
+          this.router.on(O.AFTER_ENTER, () => {
+            (b.states.length = 0), this.updateLinkListeners();
+          }),
+          this.mouse.on("move", (t) => {
+            this.visible ||
+              ((this.visible = !0), this.element.classList.add("is-visible")),
+              this.handleMouseMove(t);
+          }),
+          this.mouse.on("lerp", (t) => this.handleMouseMove(t, "cursor-smooth"))
+        );
+      }
       onDestroy() {
         this.unlistenLinks();
       }
@@ -4788,7 +4837,26 @@ var Q,
       childVideo;
       router;
       composer;
- 
+      onListen() {
+        return this.isReel
+          ? void 0
+          : w(
+              this.router.on(O.NAV_START, () => this.video.pause()),
+              g(this.element, "mouseenter", () => {
+                (this.hovering = !0),
+                  b.addState("reel", this.video.paused ? "play" : "close");
+              }),
+              g(this.element, ["mouseleave", "mousecancel"], () => {
+                (this.hovering = !1),
+                  b.removeState("reel", "play"),
+                  b.removeState("reel", "close");
+              }),
+              g(this.video, "click", () =>
+                this.video.paused ? this.video.play() : this.video.pause()
+              ),
+              g(this.video, ["play", "pause"], () => this.togglePlay())
+            );
+      }
       onCreate() {
         (this.isReel = this.element.dataset.reel !== void 0 && !F()),
           this.isReel ||
@@ -4962,7 +5030,15 @@ var A,
             { duration: 500 }
           ));
       }
-    
+      onListen() {
+        return w(
+          this.parallax > 0
+            ? this.scrollEmitter.on(B.OUPUT, (t) => this.handleScroll(t))
+            : void 0,
+          this.mouseEmitter.on("lerp", (t) => this.updateMouse(t)),
+          this.observable.onChange(() => this.updatePlane())
+        );
+      }
       onCreate() {
         super.onCreate(),
           (this.uniforms.u_distort = this.nodistort ? 0 : 1),
@@ -5319,7 +5395,15 @@ var rt,
       mouseEmitter;
       webgl;
       scrollEmitter;
-    
+      onListen() {
+        return w(
+          this.scrollEmitter.on(B.OUTPUT, (e) => this.handleScroll(e)),
+          this.scrollEmitter.on(B.VIRTUAL, (e) => this.handleVirtual(e)),
+          this.mouseEmitter.on("lerp", (e) => this.updateMouse(e)),
+          this.mouseEmitter.on("velocity", (e) => this.updateVelocity(e)),
+          this.viewport.onDimChange(() => this.updateSize())
+        );
+      }
       onCreate() {
         super.onCreate(),
           Et.ready.then(() => {
@@ -5558,7 +5642,33 @@ var J,
       constructor(t) {
         this.element = P(t, { resizeDetection: !0 });
       }
-     
+      onListen() {
+        return w(
+          this.mouseEmitter.on("lerp", (t) => this.handleMouseMove(t)),
+          this.scrollEmitter.on(B.VIRTUAL, () => {
+            !this.media.video.paused &&
+              this.scale.progress > 0.5 &&
+              this.togglePlay();
+          }),
+          g(this.trigger, "mouseenter", () => {
+            (this.hovering = !0),
+              b.addState("reel", this.media.video.paused ? "play" : "close");
+          }),
+          g(this.trigger, ["mouseleave", "mousecancel"], () => {
+            (this.hovering = !1),
+              b.removeState("reel", "play"),
+              b.removeState("reel", "close");
+          }),
+          this.viewport.onDimChange(() => {
+            if (this.active) {
+              this.scaleTo(1);
+              let [t] = this.composer.query(V, this.router.outlet);
+              t && t.component.scrollToY(this.element.y, !0);
+            }
+          }),
+          g(this.trigger, "click", () => this.togglePlay())
+        );
+      }
       onCreate() {
         let [{ component: t }] = this.composer.query(A, this.element.ref),
           e = this.composer.query(M, this.element.ref);
