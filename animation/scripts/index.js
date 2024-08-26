@@ -4377,7 +4377,7 @@ var V,
     };
     h([$("name")], V.prototype, "name", 2),
       h([m(N, !0)], V.prototype, "webgl", 2),
-      h([m(I, !0)], V.prototype, "emitter", 2),
+      h([m(I, !0)], V.prototype, "emitter", 2);
   });
 var ut,
   Ie = l(() => {
