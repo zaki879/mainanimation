@@ -332,7 +332,6 @@ var re,
       }
       addChild(t, e = {}, r) {
         let s = new this.child(e, r);
-        console.log(s)
         return this.children.set(t, s), s;
       }
       deleteChild(t) {
@@ -2055,7 +2054,8 @@ var T,
       }
       init() {
         return lt(this, void 0, void 0, function* () {
-        
+          window.history.scrollRestoration =
+            this.config.scrollRestoration || "manual";
           let t = new we(this.config.routerConfig);
           t.animate(...(this.config.animations || [])),
             t.on(O.AFTER_ENTER, ({ toElement: e }) => {
@@ -2089,7 +2089,8 @@ var q,
           (this._top = 0),
           (this._width = 0),
           (this._height = 0),
-       
+          (this._scrollWidth = 0),
+          (this._scrollHeight = 0),
           (this._visible = !1),
           (this._interecKey = "{}"),
           i.autoAttach !== !1 && this.attach();
@@ -2153,8 +2154,15 @@ var q,
       get height() {
         return this._height;
       }
-    
-   
+      get scrollWidth() {
+        return this._scrollWidth;
+      }
+      get scrollHeight() {
+        return this._scrollHeight;
+      }
+      get scrollSize() {
+        return { width: this.scrollWidth, height: this.scrollHeight };
+      }
       get size() {
         return { width: this.width, height: this.height };
       }
@@ -2266,7 +2274,9 @@ var q,
             (this._top = t.top),
             (this._width = t.width),
             (this._height = t.height),
-        
+            this.ref instanceof Element &&
+              ((this._scrollHeight = this.ref.scrollHeight),
+              (this._scrollWidth = this.ref.scrollWidth)),
             this.emit("dimensionschange", this)));
       }
       destroy() {
@@ -2500,7 +2510,8 @@ var Zt,
     C();
     Rr();
     (Zt = ((i) => (
-          (i.RESIZE = "resize"),
+      (i.SCROLL = "scroll"),
+      (i.RESIZE = "resize"),
       (i.VIRTUAL = "virtual"),
       (i.LOCK = "lock"),
       i
@@ -4246,7 +4257,7 @@ function Gr(i, t, e = []) {
 var Br = l(() => {
   "use strict";
 });
-var 
+var co,
   De,
   Wr = l(() => {
     "use strict";
@@ -4255,30 +4266,34 @@ var
     C();
     _i();
     Br();
-   
+    (co = {
+      ...bi,
+      focus: !0,
+      styles: { width: "100%", height: "100%", overflow: "hidden" },
+    }),
       (De = class extends Ee {
         constructor(t, e = !0) {
-          super({  ...t }, !1),
+          super({ ...co, ...t }, !1),
             (this.limit = { width: 0, height: 0 }),
             e && this.init();
         }
         update() {
           this.container && wt(this.container),
             this.wrapper && wt(this.wrapper);
-          let { wrapper: t, container: e, styles: r } = this.config
-          
+          let { wrapper: t, container: e, styles: r } = this.config,
+            s = { resizeDetection: !0 };
           if (
-            ((this.container = P(e || document.body)),
+            ((this.container = P(e || document.body, s)),
             this.container.ref instanceof Window)
           )
             throw new Error("container can't be the window");
-         
+          if (t) this.wrapper = P(t, s);
           else {
             let o = document.createElement("div"),
               n = Array.from(this.container.ref.childNodes);
             this.container.ref.appendChild(o),
               o.append(...n),
-              (this.wrapper = P(o));
+              (this.wrapper = P(o, s));
           }
           if (r) for (let o in r) this.container.ref.style[o] = r[o];
           return (
@@ -4338,8 +4353,8 @@ var
           return this.container.height;
         }
         handleResize() {
-          (this.limit.width =window.innerWidth),
-            (this.limit.height = window.innerHeight),
+          (this.limit.width = this.wrapper.width - this.container.width),
+            (this.limit.height = this.wrapper.height - this.container.height),
             this.emit(Zt.RESIZE);
         }
         handleScroll(t = this.output) {
@@ -4522,10 +4537,16 @@ var Z,
         );
       }
       toggleMenu() {
-        
+        (this.menuActive =
+          document.documentElement.classList.toggle("is-menu-active")),
+          this.handleScroll();
       }
       handleScroll(t = this.lastY) {
-      
+        document.documentElement.classList.toggle(
+          "is-logo-hidden",
+          this.isHome && t < this.viewport.height && !this.menuActive
+        ),
+          (this.lastY = t);
       }
       handleClick(t) {
         t.preventDefault(), t.stopPropagation();
@@ -5899,17 +5920,3 @@ window.addEventListener("resize", () => {
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
 
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
-
-// Define the animation
-gsap.to('.cardparallax', {
-  y: 300, // Move the card 300px down
-  x: 300,
-  scrollTrigger: {
-    trigger: '#heeee', // Element that triggers the animation
-    start: 'top top', // Animation starts when the top of #home hits the top of the viewport
-    end: 'bottom bottom', // Animation ends when the bottom of #home hits the top of the viewport
-    scrub: true, // Smoothly animate with the scroll
-  }
-});
