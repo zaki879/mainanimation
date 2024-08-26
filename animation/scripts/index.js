@@ -4245,7 +4245,7 @@ function Gr(i, t, e = []) {
 var Br = l(() => {
   "use strict";
 });
-var co,
+var 
   De,
   Wr = l(() => {
     "use strict";
@@ -4254,34 +4254,31 @@ var co,
     C();
     _i();
     Br();
-    (co = {
-      ...bi,
-      focus: !0,
-     
-    }),
+   
       (De = class extends Ee {
         constructor(t, e = !0) {
-          super({ ...co, ...t }, !1),
+          super({  ...t }, !1),
             (this.limit = { width: 0, height: 0 }),
             e && this.init();
         }
         update() {
           this.container && wt(this.container),
             this.wrapper && wt(this.wrapper);
-          let { wrapper: t, container: e, styles: r } = this.config,
-            s = { resizeDetection: !0 };
+          let { wrapper: t, container: e, styles: r } = this.config
+          console.log(this.config);
+          
           if (
-            ((this.container = P(e || document.body, s)),
+            ((this.container = P(e || document.body)),
             this.container.ref instanceof Window)
           )
             throw new Error("container can't be the window");
-          if (t) this.wrapper = P(t, s);
+         
           else {
             let o = document.createElement("div"),
               n = Array.from(this.container.ref.childNodes);
             this.container.ref.appendChild(o),
               o.append(...n),
-              (this.wrapper = P(o, s));
+              (this.wrapper = P(o));
           }
           if (r) for (let o in r) this.container.ref.style[o] = r[o];
           return (
@@ -5908,17 +5905,17 @@ window.addEventListener("resize", () => {
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
 
-// Register the ScrollTrigger plugin
+// Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
-// Create the scroll-triggered animation
+// Define the animation
 gsap.to('.cardparallax', {
   y: 300, // Move the card 300px down
-  x:300,
+  x: 300,
   scrollTrigger: {
-    trigger: '.containerparralax', // The element that triggers the animation
-    start: 'top top', // Animation starts when the container's top hits the top of the viewport
-    end: 'bottom 100px', // Animation ends when the container's bottom is 100px from the top of the viewport
+    trigger: '#heeee', // Element that triggers the animation
+    start: 'top top', // Animation starts when the top of #home hits the top of the viewport
+    end: 'bottom bottom', // Animation ends when the bottom of #home hits the top of the viewport
     scrub: true, // Smoothly animate with the scroll
   }
 });
