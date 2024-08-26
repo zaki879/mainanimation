@@ -1746,7 +1746,6 @@ var O,
             (this._route = ne(this.baseUrl)),
             (this._outlet = at(this.outletSelector)),
             (this._view = this.queryView(this._outlet)),
-            (this.unlisten = this.listen()),
             (this.trigger = new xe(this.triggerSelector, (e, r, s) => {
               s === "click"
                 ? (this.emit("triggerclick", { url: e, target: r }), this.to(e))
