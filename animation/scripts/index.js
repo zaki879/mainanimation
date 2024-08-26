@@ -332,6 +332,7 @@ var re,
       }
       addChild(t, e = {}, r) {
         let s = new this.child(e, r);
+        console.log(s)
         return this.children.set(t, s), s;
       }
       deleteChild(t) {
@@ -4265,7 +4266,6 @@ var
           this.container && wt(this.container),
             this.wrapper && wt(this.wrapper);
           let { wrapper: t, container: e, styles: r } = this.config
-          console.log(this.config);
           
           if (
             ((this.container = P(e || document.body)),
@@ -4338,8 +4338,8 @@ var
           return this.container.height;
         }
         handleResize() {
-          (this.limit.width = this.wrapper.width - this.container.width),
-            (this.limit.height = this.wrapper.height - this.container.height),
+          (this.limit.width =window.innerWidth),
+            (this.limit.height = window.innerHeight),
             this.emit(Zt.RESIZE);
         }
         handleScroll(t = this.output) {
@@ -4522,16 +4522,10 @@ var Z,
         );
       }
       toggleMenu() {
-        (this.menuActive =
-          document.documentElement.classList.toggle("is-menu-active")),
-          this.handleScroll();
+        
       }
       handleScroll(t = this.lastY) {
-        document.documentElement.classList.toggle(
-          "is-logo-hidden",
-          this.isHome && t < this.viewport.height && !this.menuActive
-        ),
-          (this.lastY = t);
+      
       }
       handleClick(t) {
         t.preventDefault(), t.stopPropagation();
@@ -5467,16 +5461,16 @@ var rt,
           }
       }
       get maxHeight() {
-        return this.items.length * this.viewport.height ;
+        return this.items.length * this.viewport.height * 0.5;
       }
       updateSize() {
         this.element.style.height = `${this.maxHeight}px`;
       }
       getScrollProps(e) {
-        let r = window.innerHeight,
+        let r = this.viewport.height,
           s = this.observable.y,
           o = this.observable.width,
-          n =window.innerHeight,
+          n = this.container.height,
           a = e + r * 0.5,
           c = this.maxHeight,
           f = z(a, s, s + c, 0, 1),
@@ -5523,7 +5517,6 @@ var rt,
           introProg: u,
           outroProg: x,
         } = this.getScrollProps(e);
-        console.log(this.getScrollProps(e))
         if (!(!f && !r))
           for (let d = 0, p = this.items.length; d < p; d++) {
             let v = this.items[d],
