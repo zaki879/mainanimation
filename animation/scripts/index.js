@@ -675,7 +675,16 @@ var mt = l(() => {
 var lr = l(() => {
   "use strict";
 });
-
+function g(i, t, e, r) {
+  return (
+    typeof t == "string" && (t = [t]),
+    t.forEach((s) => i.addEventListener(s, e, r)),
+    () =>
+      t.forEach((s) => {
+        i.removeEventListener(s, e, r);
+      })
+  );
+}
 var hr = l(() => {
   "use strict";
 });
@@ -1746,6 +1755,7 @@ var O,
             (this._route = ne(this.baseUrl)),
             (this._outlet = at(this.outletSelector)),
             (this._view = this.queryView(this._outlet)),
+            (this.unlisten = this.listen()),
             (this.trigger = new xe(this.triggerSelector, (e, r, s) => {
               s === "click"
                 ? (this.emit("triggerclick", { url: e, target: r }), this.to(e))
@@ -1774,7 +1784,13 @@ var O,
         get view() {
           return this._view;
         }
-      
+        listen() {
+          return w(
+            g(window, "popstate", (t) => {
+              this.navigate(t.state, { trigger: "popstate" });
+            })
+          );
+        }
         update(t) {
           this.trigger.update(t);
         }
@@ -2038,7 +2054,8 @@ var T,
       }
       init() {
         return lt(this, void 0, void 0, function* () {
-         
+          window.history.scrollRestoration =
+            this.config.scrollRestoration || "manual";
           let t = new we(this.config.routerConfig);
           t.animate(...(this.config.animations || [])),
             t.on(O.AFTER_ENTER, ({ toElement: e }) => {
@@ -2072,6 +2089,8 @@ var q,
           (this._top = 0),
           (this._width = 0),
           (this._height = 0),
+          (this._scrollWidth = 0),
+          (this._scrollHeight = 0),
           (this._visible = !1),
           (this._interecKey = "{}"),
           i.autoAttach !== !1 && this.attach();
@@ -2135,7 +2154,15 @@ var q,
       get height() {
         return this._height;
       }
-     
+      get scrollWidth() {
+        return this._scrollWidth;
+      }
+      get scrollHeight() {
+        return this._scrollHeight;
+      }
+      get scrollSize() {
+        return { width: this.scrollWidth, height: this.scrollHeight };
+      }
       get size() {
         return { width: this.width, height: this.height };
       }
@@ -2248,7 +2275,8 @@ var q,
             (this._width = t.width),
             (this._height = t.height),
             this.ref instanceof Element &&
-     
+              ((this._scrollHeight = this.ref.scrollHeight),
+              (this._scrollWidth = this.ref.scrollWidth)),
             this.emit("dimensionschange", this)));
       }
       destroy() {
@@ -2482,6 +2510,7 @@ var Zt,
     C();
     Rr();
     (Zt = ((i) => (
+      (i.SCROLL = "scroll"),
       (i.RESIZE = "resize"),
       (i.VIRTUAL = "virtual"),
       (i.LOCK = "lock"),
@@ -2529,7 +2558,9 @@ var Zt,
         start() {
           this.stop(), (this.ticker = R.main.add((t) => this.tick(t)));
         }
-     
+        onScroll(t) {
+          return this.on("scroll", t);
+        }
         onVirtual(t) {
           return this.on("virtual", t);
         }
@@ -2575,11 +2606,23 @@ var Zt,
             g(window, "keydown", (t) => this.handleKeyboard(t))
           );
         }
-      
+        tick(t = 1) {
+          let e = Be(Math.abs(this.virtual.x - this.output.x), 4),
+            r = Be(Math.abs(this.virtual.y - this.output.y), 4),
+            s = this.config.threshold;
+          if (((this.animating = e > s || r > s), this.animating)) {
+            let o = this.config.damping * this.config.frequency;
+            (this.output.x = Ge(this.output.x, this.virtual.x, o, t * 0.001)),
+              (this.output.y = Ge(this.output.y, this.virtual.y, o, t * 0.001)),
+              this.handleScroll(this.output);
+          }
+        }
         handleInertia(t) {
           this.addVirtual(t.x, t.y);
         }
-   
+        handleScroll(t = this.output) {
+          this.emit("scroll", t);
+        }
         handleKeyboard(t) {
           if (this.locks.controls.size > 0) return;
           let e = no[t.key];
@@ -2615,7 +2658,13 @@ var Zt,
             typeof e < "u" && (this.virtual.y = e),
             this.emit("virtual", this.virtual));
         }
-    
+        scrollTo(t, e = !1) {
+          this.setVirtual(t.x, t.y),
+            e &&
+              ((this.output.x = this.virtual.x),
+              (this.output.y = this.virtual.y),
+              this.handleScroll());
+        }
         isLocked(t) {
           return t
             ? this.locks[t]
@@ -2654,14 +2703,18 @@ var B,
     _i();
     Lt();
     (B = ((e) => (
-     
+      (e[(e.OUTPUT = Zt.SCROLL)] = "OUTPUT"),
+      (e[(e.VIRTUAL = Zt.VIRTUAL)] = "VIRTUAL"),
       e
     ))(B || {})),
       (Ei = class extends D {
         constructor() {
           super(),
-            F() 
-         
+            F() &&
+              g(window, "scroll", () => {
+                let t = { x: window.scrollX, y: window.scrollY };
+                this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
+              });
         }
       }),
       (I = class i extends k {
@@ -3789,7 +3842,9 @@ var te,
     gt();
     ht();
     te = class i extends k {
-    
+      get name() {
+        return "scroller";
+      }
       get child() {
         return i;
       }
@@ -4065,7 +4120,21 @@ var ji,
             (this.onEnter = y.to(this.element, { opacity: 1 })),
             (this.onLeave = y.to(this.element, { opacity: 0 }));
         }
-     
+        onListen() {
+          return this.useMobile
+            ? w(
+                g(this.nextBtn, "click", () =>
+                  this.enableStage(We(this.activeStage + 1, ji.length))
+                ),
+                g(this.prevBtn, "click", () =>
+                  this.enableStage(We(this.activeStage - 1, ji.length))
+                )
+              )
+            : w(
+                this.scrollEmitter.on(B.VIRTUAL, (t) => this.handleScroll(t)),
+                g(window, "mousemove", (t) => this.handleMouseMove(t))
+              );
+        }
         onCreate() {
           super.onCreate(),
             this.useMobile
@@ -4249,7 +4318,9 @@ var co,
             this.config.focus
               ? g(t, "focus", (e) => this.handleFocus(e), !0)
               : void 0,
-         
+            g(t, "scroll", (e) => {
+              e.preventDefault(), this.resetNativeScroll();
+            })
           );
         }
         resetNativeScroll() {
@@ -4347,7 +4418,8 @@ var V,
     };
     h([$("name")], V.prototype, "name", 2),
       h([m(N, !0)], V.prototype, "webgl", 2),
-      h([m(I, !0)], V.prototype, "emitter", 2);
+      h([m(I, !0)], V.prototype, "emitter", 2),
+      (V = h([S("smooth-scroll")], V));
   });
 var ut,
   Ie = l(() => {
@@ -4987,6 +5059,7 @@ var A,
               (this.texture =
                 Et.map.get(this.src) || this.webgl.image({ src: this.src })),
               this.texture instanceof jt && (this.video = this.texture.video);
+            let o = this.element.closest("[data-smooth-scroll-name]"),
               n = this.webgl.camera(o?.dataset?.smoothScrollName || "main");
             (this.plane = this.webgl.plane({
               x: t,
@@ -5350,7 +5423,7 @@ var rt,
                 r)
               ) {
                 let o = JSON.parse(r),
-                  n = this.element.closest(""),
+                  n = this.element.closest("[data-smooth-scroll-name]"),
                   a = this.webgl.camera(n?.dataset?.smoothScrollName || "main");
                 this.teasers.set(
                   e,
@@ -5780,8 +5853,10 @@ var zt,
                   );
               this.composer.query(V, s).forEach(({ component: c }) => {
                 c.lock(!0, !0);
-              });
-               
+              }),
+                this.composer.query(V, r).forEach(({ component: c }) => {
+                  c.scrollToY(0, !0), c.lock(!1, !0);
+                });
               let a = y.timeline();
               return (
                 n.length > 0 && a.add(n.map((c) => c.onLeave)),
@@ -5844,16 +5919,4 @@ window.addEventListener("resize", () => {
   let i = F();
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
-gsap.registerPlugin(ScrollTrigger);
 
-// Create the scroll-triggered animation
-gsap.to('.cardparallax', {
-  y: 300, // Move the card 300px down
-  x:100,
-  scrollTrigger: {
-    trigger: '.containerparralax', // The element that triggers the animation
-    start: 'top top', // Animation starts when the container's top hits the top of the viewport
-    end: 'bottom bottom', // Animation ends when the container's bottom is 100px from the top of the viewport
-    scrub: true, // Smoothly animate with the scroll
-  }
-});
