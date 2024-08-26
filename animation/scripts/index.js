@@ -675,16 +675,7 @@ var mt = l(() => {
 var lr = l(() => {
   "use strict";
 });
-function g(i, t, e, r) {
-  return (
-    typeof t == "string" && (t = [t]),
-    t.forEach((s) => i.addEventListener(s, e, r)),
-    () =>
-      t.forEach((s) => {
-        i.removeEventListener(s, e, r);
-      })
-  );
-}
+
 var hr = l(() => {
   "use strict";
 });
