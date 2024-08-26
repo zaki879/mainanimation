@@ -271,19 +271,10 @@ body {
     height: 100%
 }
 
-html body {
-    overflow: hidden
-}
+
 
 @media (min-width:1024px) {
-    html.is-webgl body {
-        height: 100%;
-        left: 0;
-        overflow: hidden;
-        position: fixed;
-        top: 0;
-        width: 100%
-    }
+
 
     body *,
     html {
@@ -434,9 +425,7 @@ html body {
     text-decoration-line: underline
 }
 
-.ts {
-    overflow: hidden
-}
+
 
 .tsf {
     line-height: 1.3;
@@ -1027,9 +1016,6 @@ html.is-menu-active [data-menu] svg path {
     gap: 2rem
 }
 
-.overflow-hidden {
-    overflow: hidden
-}
 
 .whitespace-nowrap {
     white-space: nowrap
