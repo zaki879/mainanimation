@@ -2153,9 +2153,7 @@ var q,
         return this._height;
       }
     
-      get scrollSize() {
-        return { width: this.scrollWidth, height: this.scrollHeight };
-      }
+   
       get size() {
         return { width: this.width, height: this.height };
       }
@@ -2267,9 +2265,7 @@ var q,
             (this._top = t.top),
             (this._width = t.width),
             (this._height = t.height),
-            this.ref instanceof Element &&
-              ((this._scrollHeight = this.ref.scrollHeight),
-              (this._scrollWidth = this.ref.scrollWidth)),
+        
             this.emit("dimensionschange", this)));
       }
       destroy() {
@@ -2503,8 +2499,7 @@ var Zt,
     C();
     Rr();
     (Zt = ((i) => (
-      (i.SCROLL = "scroll"),
-      (i.RESIZE = "resize"),
+          (i.RESIZE = "resize"),
       (i.VIRTUAL = "virtual"),
       (i.LOCK = "lock"),
       i
@@ -4262,7 +4257,7 @@ var co,
     (co = {
       ...bi,
       focus: !0,
-      styles: { width: "100%", height: "100%", overflow: "hidden" },
+     
     }),
       (De = class extends Ee {
         constructor(t, e = !0) {
@@ -5913,3 +5908,17 @@ window.addEventListener("resize", () => {
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
 
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// Create the scroll-triggered animation
+gsap.to('.cardparallax', {
+  y: 300, // Move the card 300px down
+  x:300,
+  scrollTrigger: {
+    trigger: '.containerparralax', // The element that triggers the animation
+    start: 'top top', // Animation starts when the container's top hits the top of the viewport
+    end: 'bottom 100px', // Animation ends when the container's bottom is 100px from the top of the viewport
+    scrub: true, // Smoothly animate with the scroll
+  }
+});
