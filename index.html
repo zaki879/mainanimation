@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/animation/styles/index.css" />
   </head>
   <body data-preload="[]">
-    <div data-smooth-scroll="true" data-smooth-scroll-name="index" id="heeee">
-      <section id="home" class="flex items-center lg1:h-screen relative w-full">
+    <div data-smooth-scroll="true" data-smooth-scroll-name="index">
+      <section  class="flex items-center lg1:h-screen relative w-full">
         <div
           class="w-full h-full relative lg1:absolute lg1:left-0 lg1:top-0 lg1:flex lg1:flex-col lg1:justify-center lg1:items-center"
           style="height: 100vh"
@@ -305,10 +305,10 @@
       </section>
       <div class="containerparralax">
         <div class="cardparallax">
-            <h2>Scroll Me!</h2>
-            <p>This card will move as you scroll down.</p>
+          <h2>Scroll Me!</h2>
+          <p>This card will move as you scroll down.</p>
         </div>
-    </div>
+      </div>
     </div>
 
     <div
@@ -328,21 +328,19 @@
     <script src="/animation/scripts/index.js" type="module" async></script>
     <script>
       gsap.registerPlugin(ScrollTrigger);
-    
+
       // Create a GSAP animation
-      gsap.to('.cardparallax', {
+      gsap.to(".cardparallax", {
         y: 0, // Move the card 200px down for a more noticeable effect
         x: -300, // Move the card 100px to the right for a more noticeable effect
         scrollTrigger: {
-          trigger: '.cardparallax', // The element that triggers the animation
-          start: 'top center', // Animation starts when the top of the card hits the center of the viewport
-          end: 'bottom top', // Animation ends when the bottom of the card hits the top of the viewport
+          trigger: ".cardparallax", // The element that triggers the animation
+          start: "top center", // Animation starts when the top of the card hits the center of the viewport
+          end: "bottom top", // Animation ends when the bottom of the card hits the top of the viewport
           scrub: true, // Smoothly animate with the scroll
           markers: true, // Display start and end markers for debugging
-        }
+        },
       });
     </script>
-    
-    
   </body>
 </html>

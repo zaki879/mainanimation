@@ -5467,16 +5467,16 @@ var rt,
           }
       }
       get maxHeight() {
-        return this.items.length * this.viewport.height * 0.5;
+        return this.items.length * this.viewport.height ;
       }
       updateSize() {
         this.element.style.height = `${this.maxHeight}px`;
       }
       getScrollProps(e) {
-        let r = this.viewport.height,
+        let r = window.innerHeight,
           s = this.observable.y,
           o = this.observable.width,
-          n = this.container.height,
+          n =window.innerHeight,
           a = e + r * 0.5,
           c = this.maxHeight,
           f = z(a, s, s + c, 0, 1),
@@ -5523,6 +5523,7 @@ var rt,
           introProg: u,
           outroProg: x,
         } = this.getScrollProps(e);
+        console.log(this.getScrollProps(e))
         if (!(!f && !r))
           for (let d = 0, p = this.items.length; d < p; d++) {
             let v = this.items[d],
