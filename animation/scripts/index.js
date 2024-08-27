@@ -2278,6 +2278,7 @@ var q,
               ((this._scrollHeight = this.ref.scrollHeight),
               (this._scrollWidth = this.ref.scrollWidth)),
             this.emit("dimensionschange", this)));
+            
       }
       destroy() {
         let i = q.items.get(this.ref);
@@ -2633,14 +2634,11 @@ var Zt,
           this.setVirtual(s, o);
         }
         handleWheel(t) {
-          if (
-            t.ctrlKey ||
-            (t.preventDefault(),
-            t.stopPropagation(),
-            this.locks.controls.size > 0)
-          )
-            return;
+         
+          console.log("hadi t :"+t);
+          
           let { deltaX: e, deltaY: r, deltaMode: s } = t,
+          
             { wheelMultiplier: o, lineHeight: n } = this.config;
           s === 1
             ? ((e *= n), (r *= n))
@@ -5159,10 +5157,10 @@ in vec4 a_position;in vec2 a_texcoord;uniform float u_time;uniform float u_bg;un
 var Tt,
   ss = l(() => {
     "use strict";
-    L();
-    Ft();
+  
+    
     He();
-    X();
+   
     ts();
     is();
     Tt = class extends A {
@@ -5180,11 +5178,6 @@ var Tt,
             this.uniforms,
             { u_scale: 1 },
             { duration: 1800, easing: E.easeOutExpo }
-          )),
-          (this.onLeave = y.to(
-            this.uniforms,
-            { u_scale: 0 },
-            { duration: 1200, easing: E.easeOutExpo }
           ));
       }
       onCreate() {
