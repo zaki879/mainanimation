@@ -2616,3 +2616,100 @@ html.is-loaded:not(.is-logo-hidden) .logo-visible\:\!opacity-100 {
     line-height: 120%;
     margin-bottom: 10vh;
 }
+
+.card-imageparralax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure image covers the entire card */
+    z-index: -1; /* Place image behind other content */
+    border-radius: 30px;
+  }
+  
+.containerparralax {
+    position: fixed; /* Fix the container in the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+}
+
+.cardparralax {
+    position: absolute;
+      margin: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    border-radius: 30px;
+    transition: transform 0.3s ease-out; /* Smooth transition */
+}
+.cardfirstparralax {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    border-radius: 30px;
+    border: 0px;
+    transition: transform 0.3s ease-out; /* Smooth transition */
+}
+
+#card1parralax {
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+}
+
+#card2parralax {
+    background-color: #2ecc71;
+    width: 70%;
+    height: 70%;
+    z-index: 2;
+}
+
+#card3parralax {
+    background-color: #e74c3c;    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
+#card4parralax {
+    background-color: #3c3fe7;    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
+#card5parralax {
+    background-color: #e74c3c;    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
+#card6parralax {
+    background-color: #e74c3c;    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
+#card7parralax {
+    background-color: #e74c3c;    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
+#card8parralax {
+    background-color: #e74c3c;    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
+#card9parralax {
+    background-color: #e74c3c;    width: 70%;
+    height: 70%;
+    z-index: 1;
+}
