@@ -2277,9 +2277,7 @@ var q,
             this.ref instanceof Element &&
               ((this._scrollHeight = this.ref.scrollHeight),
               (this._scrollWidth = this.ref.scrollWidth)),
-            this.emit("dimensionschange", this))),
-            console.log(this.ref.scrollHeight);
-            
+            this.emit("dimensionschange", this)));
       }
       destroy() {
         let i = q.items.get(this.ref);
@@ -4271,7 +4269,7 @@ var co,
     (co = {
       ...bi,
       focus: !0,
-      styles: { width: "100%", height: "100%", overflow: "hidden" },
+      styles: { width: "100%", height: "100%"},
     }),
       (De = class extends Ee {
         constructor(t, e = !0) {
@@ -5921,4 +5919,3 @@ window.addEventListener("resize", () => {
   let i = F();
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
-

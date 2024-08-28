@@ -192,7 +192,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 200vh;
     width: 100%;
     position: relative;
 }
@@ -207,7 +207,11 @@ textarea {
     padding: 20px;
     font-family: Arial, sans-serif;
     position: absolute;
+    transform: translate(0px, 200px); /* Start with the element offset */
+    opacity: 1; /* Make it invisible initially */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth transition */
 }
+
 
 input::placeholder,
 textarea::placeholder {
