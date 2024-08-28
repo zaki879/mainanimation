@@ -4269,7 +4269,7 @@ var co,
     (co = {
       ...bi,
       focus: !0,
-      styles: { width: "100%", height: "100%"},
+    
     }),
       (De = class extends Ee {
         constructor(t, e = !0) {
