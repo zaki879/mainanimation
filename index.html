@@ -303,7 +303,7 @@
           </div>
         </div>
       </section>
-      <div style="height: 100vh;">
+      <div style="height: 80vh;" class="text" id="myTextDiv">
 cc
       </div>
       <div style="width: 100vw; height: 100vh; margin-top: 20vh;" >
@@ -340,15 +340,8 @@ cc
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
     <script src="/animation/scripts/index.js" type="module" async></script>
-    <!-- <script>
-      gsap.registerPlugin(Observer);
-      Observer.create({
-        target: ".containerparralax",
-        type: "wheel,touch,scroll,pointer",
-        onUp: () => gsap.to(".cardparallax", { x: 0, y: 0 }),
-        onDown: () => gsap.to(".cardparallax", { x: -400, y: -500 }),
-      });
-    </script> -->
+  
+    
     <script>
       // Initialize Lenis for smooth scrolling
       const lenis = new Lenis({
@@ -370,76 +363,90 @@ cc
       lenis.on('scroll', Observer.update);
     
       let isScrolling = false;  // Flag to indicate if scrolling is active
+      let tolerance = 100;      // Initialize tolerance
     
-      ScrollTrigger.create({
-        trigger: "#heeee",
-        start: "top 50%",  // Trigger when the top of the trigger element (body) reaches 10% from the top of the viewport
-        onEnter: () => {  // Trigger observer when the page is scrolled 10% down
-          Observer.create({
-            target: "#heeee",
-            type: "wheel,scroll",
+      Observer.create({
+        target: "#heeee",
+        type: "wheel,scroll",
+        tolerance: 500,
+        onDown: function(self) {
+          isScrolling = true;  // Set flag to true when scrolling starts
+          document.getElementById('myTextDiv').innerText =  Math.floor(self.deltaY);
+
+          if (self.deltaY  > 0) {
+ 
+
+   // GSAP animations
+   gsap.to("#card1parralax",  { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)", delay: 0.2 });
+   gsap.to("#card2parralax", { y: 0, x: 300, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 0.3 });
+   gsap.to("#card3parralax", { y: 0, x: -300, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 0.4 });
+   gsap.to("#card4parralax", { y: -300, x: -400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 0.5 });
+   gsap.to("#card5parralax", { y: -300, x: 0, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 0.6 });
+   gsap.to("#card6parralax", { y: 300, x: -400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 0.7 });
+   gsap.to("#card7parralax", { y: 300, x: 0, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 0.8 });
+   gsap.to("#card8parralax", { y: 300, x: 400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 0.9 });
+   gsap.to("#card9parralax", { y: -300, x: 400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)", delay: 1 });
+
+
+          }
+       
+        },
+       onUp :function(self) {
+        document.getElementById('myTextDiv').innerText = Math.floor(self.deltaY);
+        isScrolling = true;  // Set flag to true when scrolling starts
+
+        if (self.deltaY <  0) {
+ 
+    
+          gsap.to("#card1parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.2 });
+          gsap.to("#card2parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.3});
+          gsap.to("#card3parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.4});
+          gsap.to("#card4parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.5 });
+          gsap.to("#card5parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.6 });
+          gsap.to("#card6parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.7 });
+          gsap.to("#card7parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.8 });
+          gsap.to("#card8parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.9 });
+          gsap.to("#card9parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 1 });
+       
+       
+                 }
+       },
+        onChange: () => {
+          if (!isScrolling) {  // Only execute if not currently scrolling
+            document.addEventListener("mousemove", mouseMoveFunc);
+    
+            let circles = gsap.utils.toArray(".cardparralax");
             
-            onDown: () => {
-              isScrolling = true;  // Set flag to true when scrolling starts
-    
-              gsap.to("#card1parralax",  { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.2  } );;
-              gsap.to("#card2parralax", { y: 0, x: 300, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" ,delay: 0.3  });;
-              gsap.to("#card3parralax", { y: 0, x: -300, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)"  ,delay: 0.4 });;
-              gsap.to("#card4parralax", { y: -300, x: -400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" ,delay: 0.5  });;
-              gsap.to("#card5parralax", { y: -300, x: 0, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" ,delay: 0.6  });;
-              gsap.to("#card6parralax", { y: 300, x: -400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" ,delay: 0.7  });;
-              gsap.to("#card7parralax", { y: 300, x: 0, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)"  ,delay: 0.8 });;
-              gsap.to("#card8parralax", { y: 300, x: 400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)"  ,delay: 0.9 });;
-              gsap.to("#card9parralax", { y: -300, x: 400, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" ,delay: 1  });
-            },
-            onUp: () => {
-              isScrolling = true;  // Set flag to true when scrolling starts
-    
-              gsap.to("#card1parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.2 });
-              gsap.to("#card2parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.3});
-              gsap.to("#card3parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.4});
-              gsap.to("#card4parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.5 });
-              gsap.to("#card5parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.6 });
-              gsap.to("#card6parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.7 });
-              gsap.to("#card7parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.8 });
-              gsap.to("#card8parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 0.9 });
-              gsap.to("#card9parralax", { y: 0, x: 0, boxShadow: "0px 5px 15px rgba(255, 255, 255, 1)",delay: 1 });
-            },
-            onChange: () => {
-              if (!isScrolling) {  // Only execute if not currently scrolling
-                document.addEventListener("mousemove", mouseMoveFunc);
-          
-                let circles = gsap.utils.toArray(".cardparralax");
-                
-                function mouseMoveFunc(e) {
-                  circles.forEach((circle, index) => {
-                    const depth = 10;
-                    const moveX = (e.pageX - window.innerWidth / 2) / depth;
-                    const moveY = (e.pageY - window.innerHeight / 2) / depth;
-                    index++;
-                
-                    // Get the current x and y positions from GSAP
-                    const currentX = gsap.getProperty(circle, "x");
-                    const currentY = gsap.getProperty(circle, "y");
-                
-                    // Combine the subtle movement from the initial example with your original logic
-                    const offsetX = (e.clientX - window.innerWidth / 2) * (0.0005 + index * 0.00008);
-                    const offsetY = (e.clientY - window.innerHeight / 2) * (0.0005 + index * 0.00008);
-                
-                    gsap.to(circle, {
-                      x: currentX + offsetX,
-                      y: currentY + offsetY,
-                      ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                      duration: 0 // Short duration for quick response
-                    });
-                  });
-                }
-              }
+            function mouseMoveFunc(e) {
+              circles.forEach((circle, index) => {
+                const depth = 10;
+                const moveX = (e.pageX - window.innerWidth / 2) / depth;
+                const moveY = (e.pageY - window.innerHeight / 2) / depth;
+                index++;
+            
+                // Get the current x and y positions from GSAP
+                const currentX = gsap.getProperty(circle, "x");
+                const currentY = gsap.getProperty(circle, "y");
+            
+                // Combine the subtle movement from the initial example with your original logic
+                const offsetX = (e.clientX - window.innerWidth / 2) * (0.0005 + index * 0.00008);
+                const offsetY = (e.clientY - window.innerHeight / 2) * (0.0005 + index * 0.00008);
+            
+                gsap.to(circle, {
+                  x: currentX + offsetX,
+                  y: currentY + offsetY,
+                  ease: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                  duration: 0 // Short duration for quick response
+                });
+              });
             }
-          });
-        }
+          }
+        },
+     
+        preventDefault: true
       });
     </script>
+    
     
     
   </body>
