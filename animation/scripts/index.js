@@ -897,7 +897,7 @@ var K,
           (this._started = !1),
           (this.lastProgress = 0),
           (this.lastDelay = 0),
-          (this._duration = typeof t.duration < "u" ? t.duration : 200);
+          (this._duration = typeof t.duration < "u" ? t.duration : 500);
       }
       callback(t, e = []) {
         typeof t == "function" && t(...e);
@@ -4153,7 +4153,7 @@ var ji,
             this.markerState,
             { offset: r[0], size: r[1] },
             {
-              duration: 200,
+              duration: 1500,
               easing: E.easeOutExpo,
               onUpdate: ({ offset: s, size: o }) => {
                 (e.strokeDashoffset = `${s}`),
@@ -4207,7 +4207,7 @@ var ji,
               this.fadeState,
               { progress: n ? 1 : 0 },
               {
-                duration: 200,
+                duration: 400,
                 easing: E.easeOutSine,
                 onUpdate: ({ progress: a }) => {
                   this.observable.ref.style.setProperty(
@@ -4269,7 +4269,7 @@ var co,
     (co = {
       ...bi,
       focus: !0,
-      styles: { width: "100%", height: "100%", overflow: "hidden" },
+    
     }),
       (De = class extends Ee {
         constructor(t, e = !0) {
@@ -4436,7 +4436,7 @@ var ut,
         this.element,
         { opacity: 1 },
         {
-          duration: 200,
+          duration: 1e3,
           delay:
             this.element.classList.contains("above-the-fold") && F()
               ? 0
@@ -4455,7 +4455,7 @@ var ut,
         { opacity: 0 },
         {
           autoStart: !1,
-          duration: 200,
+          duration: 1e3,
           onStart: () => this.onEnter.stop(),
           easing: E.easeOutExpo,
           onComplete: () => {
@@ -4561,7 +4561,7 @@ var Z,
               { y: e.component.scrollY },
               { y: t },
               {
-                duration: 200,
+                duration: 800,
                 easing: E.easeOutSine,
                 onUpdate: (r) => e.component.scrollToY(r.y),
               }
@@ -4599,7 +4599,7 @@ var Ot,
               easing: E.easeOutExpo,
               initSeek: !0,
               autoStart: !1,
-              duration: 200,
+              duration: 1500,
               onStart: () => {
                 this.lines.forEach((r) => r.classList.add("tsa")),
                   this.onLeave.stop();
@@ -4624,7 +4624,7 @@ var Ot,
               easing: E.easeOutExpo,
               onStart: () => this.onEnter.stop(),
               autoStart: !1,
-              duration: 200,
+              duration: 1e3,
               timeline: { autoStart: !1 },
             }
           ));
@@ -4644,7 +4644,7 @@ var kt,
         { scaleX: 0 },
         { scaleX: 1 },
         {
-          duration: 200,
+          duration: 1e3,
           autoStart: !1,
           initSeek: !0,
           delay: parseFloat(this.element.dataset.triggerScaleDelay || "0") || 0,
@@ -4658,7 +4658,7 @@ var kt,
         {
           autoStart: !1,
           onStart: () => this.onEnter.stop(),
-          duration: 200,
+          duration: 1e3,
           easing: E.easeOutExpo,
         }
       );
@@ -5029,12 +5029,12 @@ var A,
           (this.onEnter = y.to(
             this.uniforms,
             { u_alpha: 1 },
-            { duration: 200 }
+            { duration: 500 }
           )),
           (this.onLeave = y.to(
             this.uniforms,
             { u_alpha: 0 },
-            { duration: 200 }
+            { duration: 500 }
           ));
       }
       onListen() {
@@ -5166,7 +5166,7 @@ var Tt,
     ts();
     is();
     Tt = class extends A {
-      color = [, 0, 0];
+      color = [255, 0, 0];
       bg = !1;
       mouse;
       constructor(t) {
@@ -5174,17 +5174,17 @@ var Tt,
           u_scale: 0,
           u_texScale: 0.5,
           u_mouse: [0, 0],
-          u_color: [0, 0, 0],
+          u_color: [76,0,255],
         }),
           (this.onEnter = y.to(
             this.uniforms,
             { u_scale: 1 },
-            { duration: 1400, easing: E.easeOutExpo }
+            { duration: 1800, easing: E.easeOutExpo }
           )),
           (this.onLeave = y.to(
             this.uniforms,
             { u_scale: 0 },
-            { duration: 1100, easing: E.easeOutExpo }
+            { duration: 1200, easing: E.easeOutExpo }
           ));
       }
       onCreate() {
@@ -5250,7 +5250,7 @@ var go,
                   this.element.classList.add("is-done"),
                   document.documentElement.classList.add("is-loaded"),
                   this.scroller.lock(!1, !0),
-                  (this.element.style.display = "inline");
+                  (this.element.style.display = "none");
               else {
                 let e = !1;
                 await Promise.all([
@@ -5261,7 +5261,7 @@ var go,
                     this.progressEl,
                     { x: 80 },
                     {
-                      duration: 200,
+                      duration: 1200,
                       units: { x: "%" },
                       easing: E.easeOutExpo,
                       onUpdate: (r, { linear: s }) => {
@@ -5308,10 +5308,10 @@ var go,
               this.progressEl,
               { x: -20, scale: 2 },
               {
-                duration: 100,
+                duration: 1200,
                 units: { x: "%" },
                 easing: E.easeInOutExpo,
-                delay: 100,
+                delay: 200,
               }
             )
             .to(this.element, { opacity: 0 }, { duration: 1e3, offset: -1 });
@@ -5356,7 +5356,7 @@ var rt,
             { progress: 1 },
             {
               autoStart: !1,
-              duration: 200,
+              duration: 800,
               easing: E.easeOutSine,
               onStart: () => (this.fading = !1),
               onUpdate: ({ progress: r }) => {
@@ -5373,7 +5373,7 @@ var rt,
             { progress: 0 },
             {
               autoStart: !1,
-              duration: 200,
+              duration: 800,
               easing: E.easeOutSine,
               onStart: () => (this.fading = !0),
               onUpdate: ({ progress: r }) => {
@@ -5716,7 +5716,7 @@ var J,
               this.buldge,
               { progress: t },
               {
-                duration: 200,
+                duration: 1e3,
                 easing: E.easeOutSine,
                 onUpdate: ({ progress: a }) => {
                   if (s) {
@@ -5730,7 +5730,7 @@ var J,
               this.scale,
               { progress: t },
               {
-                duration: 200,
+                duration: 1e3,
                 offset: -1,
                 easing: E.easeInOutExpo,
                 onUpdate: ({ progress: a }) => {
@@ -5885,7 +5885,7 @@ var zt,
               new Dt(),
               new N({
                 uniforms: {
-                  u_accentColor: [19 / 255, 7 / 255, 159 / 255]  // #13079F
+                  u_accentColor: [0.51, 0.19, 0.75]  // #8131BF  
                 }
               }),
               
@@ -5919,7 +5919,3 @@ window.addEventListener("resize", () => {
   let i = F();
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
-console.log(
-  "%cCoded by Davide Perozzi @ https://perozzi.studio/",
-  "color: #535353; font-weight: bold; background: #e0e0e0; padding: 10px;"
-);
