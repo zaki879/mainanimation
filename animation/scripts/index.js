@@ -257,7 +257,7 @@ var C = l(() => {
   nr();
 });
 function F() {
-  return Xt.mobile || window.innerWidth < 1024;
+  return Xt.mobile ;
 }
 var Lt = l(() => {
   C();
