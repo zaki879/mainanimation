@@ -4269,7 +4269,7 @@ var co,
     (co = {
       ...bi,
       focus: !0,
-    
+      styles: { width: "100%", height: "100%", overflow: "hidden" },
     }),
       (De = class extends Ee {
         constructor(t, e = !0) {
@@ -5166,7 +5166,7 @@ var Tt,
     ts();
     is();
     Tt = class extends A {
-      color = [255, 0, 0];
+      color = [0, 0, 0];
       bg = !1;
       mouse;
       constructor(t) {
@@ -5174,7 +5174,7 @@ var Tt,
           u_scale: 0,
           u_texScale: 0.5,
           u_mouse: [0, 0],
-          u_color: [76,0,255],
+          u_color: [0, 0, 0],
         }),
           (this.onEnter = y.to(
             this.uniforms,
@@ -5884,12 +5884,8 @@ var zt,
             services: [
               new Dt(),
               new N({
-                uniforms: {
-                  u_accentColor: [0.51, 0.19, 0.75]  // #8131BF  
-                }
+                uniforms: { u_accentColor: [254 / 255, 93 / 255, 47 / 255] },
               }),
-              
-              
               new G(),
               new I(),
               new W(),
