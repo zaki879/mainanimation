@@ -4269,7 +4269,7 @@ var co,
     (co = {
       ...bi,
       focus: !0,
-      styles: { },
+     
     }),
       (De = class extends Ee {
         constructor(t, e = !0) {
@@ -5911,3 +5911,7 @@ async function wo() {
     : await Promise.resolve().then(() => (us(), hs));
 }
 wo();
+window.addEventListener("resize", () => {
+  let i = F();
+  ((i && !Gi) || (!i && Gi)) && window.location.reload();
+});
