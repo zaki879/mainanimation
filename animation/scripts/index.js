@@ -5911,7 +5911,3 @@ async function wo() {
     : await Promise.resolve().then(() => (us(), hs));
 }
 wo();
-window.addEventListener("resize", () => {
-  let i = F();
-  ((i && !Gi) || (!i && Gi)) && window.location.reload();
-});
