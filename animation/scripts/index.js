@@ -257,7 +257,7 @@ var C = l(() => {
   nr();
 });
 function F() {
-  return Xt.mobile ;
+  return Xt.mobile || window.innerWidth < 1024;
 }
 var Lt = l(() => {
   C();
@@ -4438,7 +4438,7 @@ var ut,
         {
           duration: 1e3,
           delay:
-            this.element.classList.contains("above-the-fold") && (F() || window.innerWidth < 1024) 
+            this.element.classList.contains("above-the-fold") && F()
               ? 0
               : parseInt(this.element.dataset.triggerOpacityDelay || "0") || 0,
           autoStart: !1,
@@ -4608,7 +4608,7 @@ var Ot,
               timeline: {
                 autoStart: !1,
                 delay:
-                  this.element.classList.contains("above-the-fold") && (F() || window.innerWidth < 1024) 
+                  this.element.classList.contains("above-the-fold") && F()
                     ? 0
                     : parseFloat(this.element.dataset.textSlideDelay || "0") ||
                       0,
@@ -4919,11 +4919,11 @@ var St,
       composer;
       async onCreate() {
         let t = await this.router;
-        document.documentElement.classList.add("is-loaded"),
-        t.on(O.AFTER_ENTER, () => this.composer.update()),
-        t.on(O.AFTER_LEAVE, ({ fromElement: r }) =>
-          this.composer.update(r, !0)
-        );
+      document.documentElement.classList.add("is-loaded"),
+          t.on(O.AFTER_ENTER, () => this.composer.update()),
+          t.on(O.AFTER_LEAVE, ({ fromElement: r }) =>
+            this.composer.update(r, !0)
+          );
       }
     };
     h([m(T)], St.prototype, "router", 2),
