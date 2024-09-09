@@ -2709,12 +2709,7 @@ var B,
     ))(B || {})),
       (Ei = class extends D {
         constructor() {
-          super(),
-            F() &&
-              g(window, "touch", () => {
-                let t = { x: window.scrollX, y: window.scrollY };
-                this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
-              });
+          super();
         }
       }),
       (I = class i extends k {
