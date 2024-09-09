@@ -257,7 +257,7 @@ var C = l(() => {
   nr();
 });
 function F() {
-  return Xt.mobile || window.innerWidth < 1024;
+  return Xt.mobile ;
 }
 var Lt = l(() => {
   C();
@@ -2710,7 +2710,7 @@ var B,
       (Ei = class extends D {
         constructor() {
           super(),
-            F() &&
+          (F() || window.innerWidth < 1024)  &&
               g(window, "scroll", () => {
                 let t = { x: window.scrollX, y: window.scrollY };
                 this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
@@ -4095,7 +4095,7 @@ var ji,
       [812, 327],
     ]),
       (H = class extends M {
-        useMobile = F();
+        useMobile = (F() || window.innerWidth < 1024) ;
         markerState = { offset: 0, size: 0 };
         fadeState = { active: !1, progress: 0 };
         observable;
@@ -4438,7 +4438,7 @@ var ut,
         {
           duration: 1e3,
           delay:
-            this.element.classList.contains("above-the-fold") && F()
+            this.element.classList.contains("above-the-fold") && F() || window.innerWidth < 1024
               ? 0
               : parseInt(this.element.dataset.triggerOpacityDelay || "0") || 0,
           autoStart: !1,
@@ -4608,7 +4608,7 @@ var Ot,
               timeline: {
                 autoStart: !1,
                 delay:
-                  this.element.classList.contains("above-the-fold") && F()
+                  this.element.classList.contains("above-the-fold") && F() || window.innerWidth < 1024
                     ? 0
                     : parseFloat(this.element.dataset.textSlideDelay || "0") ||
                       0,
@@ -4865,7 +4865,7 @@ var Q,
             );
       }
       onCreate() {
-        (this.isReel = this.element.dataset.reel !== void 0 && !F()),
+        (this.isReel = this.element.dataset.reel !== void 0 && !(F() || window.innerWidth < 1024) ),
           this.isReel ||
             ((this.video =
               this.element instanceof HTMLVideoElement
@@ -4877,7 +4877,7 @@ var Q,
       }
       togglePlay() {
         (this.video.volume = 0.25),
-          F() && (this.video.controls = !this.video.paused),
+        (F() || window.innerWidth < 1024)  && (this.video.controls = !this.video.paused),
           this.video.paused
             ? (b.removeState("reel", "close"),
               this.hovering && b.addState("reel", "play"))
@@ -5278,7 +5278,7 @@ var go,
                     }
                   ),
                 ]),
-                  F()
+                F() || window.innerWidth < 1024
                     ? (this.service.load(() => {}),
                       this.service.resolve(),
                       this.element.classList.add("is-done"),
@@ -5906,12 +5906,12 @@ var zt,
 Lt();
 var Gi = !1;
 async function wo() {
-  F()
+  F() || window.innerWidth < 1024
     ? ((Gi = !0), await Promise.resolve().then(() => (Kr(), Zr)))
     : await Promise.resolve().then(() => (us(), hs));
 }
 wo();
 window.addEventListener("resize", () => {
-  let i = F();
+  let i = F() || window.innerWidth < 1024 ;
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
