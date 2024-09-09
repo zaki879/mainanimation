@@ -2710,7 +2710,7 @@ var B,
       (Ei = class extends D {
         constructor() {
           super(),
-            F() &&
+          (F() || window.innerWidth < 1024) &&
               g(window, "scroll", () => {
                 let t = { x: window.scrollX, y: window.scrollY };
                 this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
@@ -4095,7 +4095,7 @@ var ji,
       [812, 327],
     ]),
       (H = class extends M {
-        useMobile = F();
+        useMobile = (F() || window.innerWidth < 1024);
         markerState = { offset: 0, size: 0 };
         fadeState = { active: !1, progress: 0 };
         observable;
