@@ -3920,7 +3920,7 @@ var Re,
         if (this.resolver.completed || this.loading) return;
         this.loading = !0;
         let e = [],
-          r = await fetch("/_/static/projects.json"),
+          r = await fetch("https://zaki879.github.io/mainanimation/animation/static/projects.json"),
           s = Object.values(await r.json()),
           o =
             location.protocol +
@@ -4269,7 +4269,7 @@ var co,
     (co = {
       ...bi,
       focus: !0,
-      styles: { width: "100%", height: "100%", overflow: "hidden" },
+    
     }),
       (De = class extends Ee {
         constructor(t, e = !0) {
@@ -5166,7 +5166,7 @@ var Tt,
     ts();
     is();
     Tt = class extends A {
-      color = [, 0, 0];
+      color = [255, 0, 0];
       bg = !1;
       mouse;
       constructor(t) {
@@ -5174,7 +5174,7 @@ var Tt,
           u_scale: 0,
           u_texScale: 0.5,
           u_mouse: [0, 0],
-          u_color: [0, 0, 0],
+          u_color: [76,0,255],
         }),
           (this.onEnter = y.to(
             this.uniforms,
@@ -5885,7 +5885,7 @@ var zt,
               new Dt(),
               new N({
                 uniforms: {
-                  u_accentColor: [19 / 255, 7 / 255, 159 / 255]  // #13079F
+                  u_accentColor: [0.51, 0.19, 0.75]  // #8131BF  
                 }
               }),
               
@@ -5919,7 +5919,3 @@ window.addEventListener("resize", () => {
   let i = F();
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
-console.log(
-  "%cCoded by Davide Perozzi @ https://perozzi.studio/",
-  "color: #535353; font-weight: bold; background: #e0e0e0; padding: 10px;"
-);
