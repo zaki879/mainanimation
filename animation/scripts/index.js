@@ -5174,7 +5174,7 @@ var Tt,
           u_scale: 0,
           u_texScale: 0.5,
           u_mouse: [0, 0],
-          u_color: [0, 0, 0],
+          u_color: [76,0,255],
         }),
           (this.onEnter = y.to(
             this.uniforms,
@@ -5884,7 +5884,7 @@ var zt,
             services: [
               new Dt(),
               new N({
-                uniforms: { u_accentColor: [254 / 255, 93 / 255, 47 / 255] },
+                uniforms: {  u_accentColor: [0.51, 0.19, 0.75] },
               }),
               new G(),
               new I(),
