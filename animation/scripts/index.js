@@ -4920,19 +4920,10 @@ var St,
       async onCreate() {
         let t = await this.router;
         document.documentElement.classList.add("is-loaded"),
-          (await this.preloader).resolve(),
-          t.on(O.AFTER_ENTER, () => {
-            this.composer.update();
-          }),
-          t.on(O.BEFORE_LEAVE, () => {
-            (document.documentElement.style.scrollBehavior = "auto"),
-              setTimeout(() => {
-                window.scrollTo(0, 0),
-                  setTimeout(() => {
-                    document.documentElement.style.scrollBehavior = "";
-                  });
-              });
-          });
+        t.on(O.AFTER_ENTER, () => this.composer.update()),
+        t.on(O.AFTER_LEAVE, ({ fromElement: r }) =>
+          this.composer.update(r, !0)
+        );
       }
     };
     h([m(T)], St.prototype, "router", 2),
@@ -5906,11 +5897,9 @@ var zt,
 Lt();
 var Gi = !1;
 async function wo() {
-  if ((F() || window.innerWidth < 1024) ) {
-    await Promise.resolve().then(() => (us(), hs))
-  }
-    // ? 
-    // : ;
+  F()
+    ? ((Gi = !0), await Promise.resolve().then(() => (Kr(), Zr)))
+    : await Promise.resolve().then(() => (us(), hs));
 }
 wo();
 window.addEventListener("resize", () => {
