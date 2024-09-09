@@ -2692,6 +2692,27 @@ var Zt,
         }
       });
   });
+  function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function() {
+      const context = this;
+      const args = arguments;
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(lastFunc);
+        lastFunc = setTimeout(function() {
+          if (Date.now() - lastRan >= limit) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          }
+        }, limit - (Date.now() - lastRan));
+      }
+    };
+  }
+  
 var B,
   Ei,
   I,
@@ -2709,8 +2730,22 @@ var B,
     ))(B || {})),
       (Ei = class extends D {
         constructor() {
-          super(),
-            F()
+          super();
+          if (F()) {
+            // Handle mobile or small screen behavior here
+            g(window, "scroll", throttle(() => {
+              let t = { x: window.scrollX, y: window.scrollY };
+              this.emit(B.OUTPUT, t);
+            }, 100));
+          } else {
+            // Handle desktop behavior
+            g(window, "scroll", throttle(() => {
+              let t = { x: window.scrollX, y: window.scrollY };
+              this.emit(B.OUTPUT, t);
+              this.emit(B.VIRTUAL, t);
+            }, 100));
+          }
+          
         }
       }),
       (I = class i extends k {
