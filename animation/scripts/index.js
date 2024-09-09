@@ -257,7 +257,7 @@ var C = l(() => {
   nr();
 });
 function F() {
-  return Xt.mobile ;
+  return Xt.mobile || window.innerWidth < 1024;
 }
 var Lt = l(() => {
   C();
@@ -2707,20 +2707,16 @@ var B,
       (e[(e.VIRTUAL = Zt.VIRTUAL)] = "VIRTUAL"),
       e
     ))(B || {})),
-    (Ei = class extends D {
-      constructor() {
-        super();
-        if (F()) {
-          // Handle mobile scroll logic
-          g(window, "scroll", throttle(() => {
-            let t = { x: window.scrollX, y: window.scrollY };
-            this.emit(B.OUTPUT, t);
-            this.emit(B.VIRTUAL, t);
-          }, 100));
+      (Ei = class extends D {
+        constructor() {
+          super(),
+            F() &&
+              g(window, "touch", () => {
+                let t = { x: window.scrollX, y: window.scrollY };
+                this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
+              });
         }
-      }
-    });
-    
+      }),
       (I = class i extends k {
         get name() {
           return "scroll-emitter";
@@ -5917,28 +5913,6 @@ async function wo() {
 }
 wo();
 window.addEventListener("resize", () => {
-  let i = F();  // Now checks only if the device is mobile
-  if ((i && !Gi) || (!i && Gi)) {
-    window.location.reload();
-  }
+  let i = F();
+  ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
-function throttle(func, limit) {
-  let lastFunc;
-  let lastRan;
-  return function() {
-    const context = this;
-    const args = arguments;
-    if (!lastRan) {
-      func.apply(context, args);
-      lastRan = Date.now();
-    } else {
-      clearTimeout(lastFunc);
-      lastFunc = setTimeout(function() {
-        if (Date.now() - lastRan >= limit) {
-          func.apply(context, args);
-          lastRan = Date.now();
-        }
-      }, limit - (Date.now() - lastRan));
-    }
-  };
-}
