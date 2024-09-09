@@ -5912,6 +5912,6 @@ async function wo() {
 }
 wo();
 window.addEventListener("resize", () => {
-  let i = F();
+  let i = (F() || window.innerWidth < 1024);
   ((i && !Gi) || (!i && Gi)) && window.location.reload();
 });
