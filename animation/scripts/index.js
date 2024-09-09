@@ -4608,7 +4608,7 @@ var Ot,
               timeline: {
                 autoStart: !1,
                 delay:
-                  this.element.classList.contains("above-the-fold") && F()
+                  this.element.classList.contains("above-the-fold") && (F() || window.innerWidth < 1024) 
                     ? 0
                     : parseFloat(this.element.dataset.textSlideDelay || "0") ||
                       0,
