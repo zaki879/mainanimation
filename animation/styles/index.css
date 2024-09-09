@@ -264,14 +264,12 @@ body {
 }
 
 html.is-menu-active body {
-    overflow: hidden
 }
 
 @media (min-width:1024px) {
     html.is-webgl body {
         height: 100%;
         left: 0;
-        overflow: hidden;
         position: fixed;
         top: 0;
         width: 100%
@@ -427,7 +425,6 @@ html.is-menu-active body {
 }
 
 .ts {
-    overflow: hidden
 }
 
 .tsf {
@@ -1020,7 +1017,6 @@ html.is-menu-active [data-menu] svg path {
 }
 
 .overflow-hidden {
-    overflow: hidden
 }
 
 .whitespace-nowrap {
