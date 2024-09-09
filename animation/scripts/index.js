@@ -257,7 +257,7 @@ var C = l(() => {
   nr();
 });
 function F() {
-  return Xt.mobile || window.innerWidth < 1024;
+  return Xt.mobile ;
 }
 var Lt = l(() => {
   C();
@@ -2709,7 +2709,12 @@ var B,
     ))(B || {})),
       (Ei = class extends D {
         constructor() {
-          super();
+          super(),
+            F() &&
+              g(window, "scroll", () => {
+                let t = { x: window.scrollX, y: window.scrollY };
+                this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
+              });
         }
       }),
       (I = class i extends k {
@@ -4116,7 +4121,19 @@ var ji,
             (this.onLeave = y.to(this.element, { opacity: 0 }));
         }
         onListen() {
-   
+          return this.useMobile
+            ? w(
+                g(this.nextBtn, "click", () =>
+                  this.enableStage(We(this.activeStage + 1, ji.length))
+                ),
+                g(this.prevBtn, "click", () =>
+                  this.enableStage(We(this.activeStage - 1, ji.length))
+                )
+              )
+            : w(
+                this.scrollEmitter.on(B.VIRTUAL, (t) => this.handleScroll(t)),
+                g(window, "mousemove", (t) => this.handleMouseMove(t))
+              );
         }
         onCreate() {
           super.onCreate(),
@@ -4420,7 +4437,10 @@ var ut,
         { opacity: 1 },
         {
           duration: 1e3,
-         
+          delay:
+            this.element.classList.contains("above-the-fold") && F()
+              ? 0
+              : parseInt(this.element.dataset.triggerOpacityDelay || "0") || 0,
           autoStart: !1,
           easing: E.easeOutSine,
           onStart: () => this.element.classList.add("is-active"),
@@ -4579,12 +4599,12 @@ var Ot,
               easing: E.easeOutExpo,
               initSeek: !0,
               autoStart: !1,
-              duration: 0,
+              duration: 1500,
               onStart: () => {
                 this.lines.forEach((r) => r.classList.add("tsa")),
                   this.onLeave.stop();
               },
-              stagger: { offset: 0 },
+              stagger: { offset: 0.05 },
               timeline: {
                 autoStart: !1,
                 delay:
@@ -4604,7 +4624,7 @@ var Ot,
               easing: E.easeOutExpo,
               onStart: () => this.onEnter.stop(),
               autoStart: !1,
-              duration: 0,
+              duration: 1e3,
               timeline: { autoStart: !1 },
             }
           ));
@@ -4899,7 +4919,6 @@ var St,
       composer;
       async onCreate() {
         let t = await this.router;
-        
         document.documentElement.classList.add("is-loaded"),
           (await this.preloader).resolve(),
           t.on(O.AFTER_ENTER, () => {
