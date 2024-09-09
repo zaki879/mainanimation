@@ -4095,7 +4095,7 @@ var ji,
       [812, 327],
     ]),
       (H = class extends M {
-        useMobile = F();
+        useMobile = (F() || window.innerWidth < 1024) ;
         markerState = { offset: 0, size: 0 };
         fadeState = { active: !1, progress: 0 };
         observable;
