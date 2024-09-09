@@ -5899,7 +5899,7 @@ var zt,
             ],
           }),
         ],
-        zt
+        zt  
       ));
     xo = new zt();
   });
@@ -5907,10 +5907,10 @@ Lt();
 var Gi = !1;
 async function wo() {
   if (F()) {
-    ((Gi = !0), await Promise.resolve().then(() => (Kr(), Zr)))
+    await Promise.resolve().then(() => (us(), hs))
   }
     // ? 
-    // : await Promise.resolve().then(() => (us(), hs));
+    // : ;
 }
 wo();
 window.addEventListener("resize", () => {
