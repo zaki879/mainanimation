@@ -4420,10 +4420,7 @@ var ut,
         { opacity: 1 },
         {
           duration: 1e3,
-          delay:
-            this.element.classList.contains("above-the-fold") && F()
-              ? 0
-              : parseInt(this.element.dataset.triggerOpacityDelay || "0") || 0,
+         
           autoStart: !1,
           easing: E.easeOutSine,
           onStart: () => this.element.classList.add("is-active"),
@@ -4590,11 +4587,7 @@ var Ot,
               stagger: { offset: 0.05 },
               timeline: {
                 autoStart: !1,
-                delay:
-                  this.element.classList.contains("above-the-fold") && F()
-                    ? 0
-                    : parseFloat(this.element.dataset.textSlideDelay || "0") ||
-                      0,
+             
               },
             }
           )),
@@ -5262,14 +5255,9 @@ var go,
                     }
                   ),
                 ]),
-                  F()
-                    ? (this.service.load(() => {}),
-                      this.service.resolve(),
-                      this.element.classList.add("is-done"),
-                      document.documentElement.classList.add("is-loaded"))
-                    : Promise.all([this.service.loaded()]).then(() =>
-                        this.done()
-                      );
+                Promise.all([this.service.loaded()]).then(() =>
+                  this.done()
+                );
               }
             });
         }
