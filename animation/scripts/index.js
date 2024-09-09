@@ -4919,8 +4919,14 @@ var St,
       composer;
       async onCreate() {
         let t = await this.router;
-      document.documentElement.classList.add("is-loaded"),
-          t.on(O.AFTER_ENTER, () => this.composer.update()),
+        document.documentElement.classList.add("is-loaded"),
+        t.on(O.AFTER_ENTER, () => this.composer.update()),
+      
+        document.documentElement.classList.add("is-loaded"),
+          (await this.preloader).resolve(),
+          t.on(O.AFTER_ENTER, () => {
+            this.composer.update();
+          }),
           t.on(O.AFTER_LEAVE, ({ fromElement: r }) =>
             this.composer.update(r, !0)
           );
