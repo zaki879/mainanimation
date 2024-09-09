@@ -257,7 +257,7 @@ var C = l(() => {
   nr();
 });
 function F() {
-  return Xt.mobile || window.innerWidth < 1024;
+  return Xt.mobile ;
 }
 var Lt = l(() => {
   C();
@@ -4919,17 +4919,21 @@ var St,
       composer;
       async onCreate() {
         let t = await this.router;
-        document.documentElement.classList.add("is-loaded"),
-        t.on(O.AFTER_ENTER, () => this.composer.update()),
-      
+        
         document.documentElement.classList.add("is-loaded"),
           (await this.preloader).resolve(),
           t.on(O.AFTER_ENTER, () => {
             this.composer.update();
           }),
-          t.on(O.AFTER_LEAVE, ({ fromElement: r }) =>
-            this.composer.update(r, !0)
-          );
+          t.on(O.BEFORE_LEAVE, () => {
+            (document.documentElement.style.scrollBehavior = "auto"),
+              setTimeout(() => {
+                window.scrollTo(0, 0),
+                  setTimeout(() => {
+                    document.documentElement.style.scrollBehavior = "";
+                  });
+              });
+          });
       }
     };
     h([m(T)], St.prototype, "router", 2),
