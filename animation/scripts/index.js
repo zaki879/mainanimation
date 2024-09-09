@@ -2710,7 +2710,7 @@ var B,
       (Ei = class extends D {
         constructor() {
           super(),
-            F() &&
+          (F() || window.innerWidth < 1024)  &&
               g(window, "scroll", () => {
                 let t = { x: window.scrollX, y: window.scrollY };
                 this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
