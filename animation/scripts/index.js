@@ -4579,15 +4579,19 @@ var Ot,
               easing: E.easeOutExpo,
               initSeek: !0,
               autoStart: !1,
-              duration: 1500,
+              duration: 0,
               onStart: () => {
                 this.lines.forEach((r) => r.classList.add("tsa")),
                   this.onLeave.stop();
               },
-              stagger: { offset: 0.05 },
+              stagger: { offset: 0 },
               timeline: {
                 autoStart: !1,
-             
+                delay:
+                  this.element.classList.contains("above-the-fold") && F()
+                    ? 0
+                    : parseFloat(this.element.dataset.textSlideDelay || "0") ||
+                      0,
               },
             }
           )),
@@ -4600,7 +4604,7 @@ var Ot,
               easing: E.easeOutExpo,
               onStart: () => this.onEnter.stop(),
               autoStart: !1,
-              duration: 1e3,
+              duration: 0,
               timeline: { autoStart: !1 },
             }
           ));
@@ -5255,9 +5259,14 @@ var go,
                     }
                   ),
                 ]),
-                Promise.all([this.service.loaded()]).then(() =>
-                  this.done()
-                );
+                  F()
+                    ? (this.service.load(() => {}),
+                      this.service.resolve(),
+                      this.element.classList.add("is-done"),
+                      document.documentElement.classList.add("is-loaded"))
+                    : Promise.all([this.service.loaded()]).then(() =>
+                        this.done()
+                      );
               }
             });
         }
