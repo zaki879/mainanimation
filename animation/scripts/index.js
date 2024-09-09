@@ -5278,7 +5278,7 @@ var go,
                     }
                   ),
                 ]),
-                  F()
+                (F() || window.innerWidth < 1024) 
                     ? (this.service.load(() => {}),
                       this.service.resolve(),
                       this.element.classList.add("is-done"),
