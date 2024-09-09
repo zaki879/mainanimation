@@ -4116,19 +4116,7 @@ var ji,
             (this.onLeave = y.to(this.element, { opacity: 0 }));
         }
         onListen() {
-          return this.useMobile
-            ? w(
-                g(this.nextBtn, "click", () =>
-                  this.enableStage(We(this.activeStage + 1, ji.length))
-                ),
-                g(this.prevBtn, "click", () =>
-                  this.enableStage(We(this.activeStage - 1, ji.length))
-                )
-              )
-            : w(
-                this.scrollEmitter.on(B.VIRTUAL, (t) => this.handleScroll(t)),
-                g(window, "mousemove", (t) => this.handleMouseMove(t))
-              );
+   
         }
         onCreate() {
           super.onCreate(),
