@@ -3920,7 +3920,7 @@ var Re,
         if (this.resolver.completed || this.loading) return;
         this.loading = !0;
         let e = [],
-          r = await fetch("/_/static/projects.json"),
+          r = await fetch("/animation/static/projects.json"),
           s = Object.values(await r.json()),
           o =
             location.protocol +
