@@ -257,7 +257,7 @@ var C = l(() => {
   nr();
 });
 function F() {
-  return Xt.mobile ;
+  return Xt.mobile || window.innerWidth < 1024;
 }
 var Lt = l(() => {
   C();
@@ -2710,11 +2710,7 @@ var B,
       (Ei = class extends D {
         constructor() {
           super(),
-            F() &&
-              g(window, "scroll", () => {
-                let t = { x: window.scrollX, y: window.scrollY };
-                this.emit(B.OUTPUT, t), this.emit(B.VIRTUAL, t);
-              });
+            F()
         }
       }),
       (I = class i extends k {
