@@ -4438,7 +4438,7 @@ var ut,
         {
           duration: 1e3,
           delay:
-            this.element.classList.contains("above-the-fold") && F()
+            this.element.classList.contains("above-the-fold") && (F() || window.innerWidth < 1024) 
               ? 0
               : parseInt(this.element.dataset.triggerOpacityDelay || "0") || 0,
           autoStart: !1,
